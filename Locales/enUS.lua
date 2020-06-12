@@ -13,4 +13,5 @@ if LOCALE == "enUS" then
 	
 	-- Keybindings
 	L["MIDAS_OPEN_CLOSE_OPTIONS"] = "Open/Close Options";
+	L["MIDAS_OPEN_CLOSE_WINDOW"] = "Open/Close Window";
 end

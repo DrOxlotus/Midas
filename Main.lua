@@ -4,6 +4,7 @@ local addonName, addonTbl = ...;
 -- Keybindings
 BINDING_HEADER_MIDAS = "MIDAS";
 BINDING_NAME_MIDAS_OPEN_CLOSE_OPTIONS = L["MIDAS_OPEN_CLOSE_OPTIONS"];
+BINDING_NAME_MIDAS_OPEN_CLOSE_WINDOW = L["MIDAS_OPEN_CLOSE_WINDOW"];
 
 -- Event Registrations
 local eventFrame = CreateFrame("Frame");
@@ -12,6 +13,8 @@ local mouseFrame = CreateFrame("Frame", "MouseFrame", UIParent);
 function MidasKeyPressHandler(key)
 	if key == GetBindingKey("MIDAS_OPEN_CLOSE_OPTIONS") then
 		-- do something, obviously
+	elseif key == GetBindingKey("MIDAS_OPEN_CLOSE_WINDOW") then
+		-- do something else, obviously
 	end
 end
 
