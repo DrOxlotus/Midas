@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="MIDAS_OPEN_CLOSE_OPTIONS" header="MIDAS" category="ADDONS">
+		BagCleanerKeyPressHandler(GetBindingKey("MIDAS_OPEN_CLOSE_OPTIONS"));
+	</Binding>
+</Bindings>
