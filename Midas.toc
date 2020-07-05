@@ -6,5 +6,5 @@
 ## SavedVariables: MidasHistoryDB
 ## SavedVariablesPerCharacter: MidasCharacterHistoryDB
 
-Locales\enUS.lua
+L.lua
 Main.lua
