@@ -7,4 +7,5 @@
 ## SavedVariablesPerCharacter: MidasCharacterHistoryDB
 
 L.lua
+Commands.lua
 Main.lua
