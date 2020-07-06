@@ -35,6 +35,7 @@ addonTbl.SetLocale = function(locale)
 		-- DESCRIPTIONS
 		
 		-- OBJECT TYPES
+		L["PLAYER"]									= "Player";
 		
 		-- OTHER
 	end

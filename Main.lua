@@ -17,7 +17,7 @@ end
 
 local function IsPlayerInCombat()
 	-- Maps can't be updated while the player is in combat.
-	if UnitAffectingCombat("Player") then
+	if UnitAffectingCombat(L["PLAYER"]) then
 		isPlayerInCombat = true;
 	else
 		isPlayerInCombat = false;
