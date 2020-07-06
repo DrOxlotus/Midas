@@ -9,6 +9,8 @@
 L.lua
 Classes\Widget.lua
 Classes\Frame.lua
+DB\Events.lua
+DB\Variables.lua
 Commands.lua
 Settings.lua
 Main.lua
