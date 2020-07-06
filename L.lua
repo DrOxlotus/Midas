@@ -26,6 +26,10 @@ addonTbl.SetLocale = function(locale)
 		
 		-- GLOBAL STRINGS
 		L["KEYBIND_SETTING_OPEN_MENU"]				= "Open Menu";
+		L["BUTTON_OPTIONS"]							= "Options";
+		L["BUTTON_RELOAD_LAST_SESSION"]				= "Pick up from where you left off before you logged or reloaded.";
+		L["BUTTON_RESET"]							= "Resets the current session. It's almost like a session was never started.";
+		L["BUTTON_START_AND_STOP"]					= "Tells Midas to start and stop recording.";
 		
 		-- INFORMATIONAL MESSAGES
 		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";

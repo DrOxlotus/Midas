@@ -52,8 +52,11 @@ local function Show(frame)
 		
 		-- WIDGETS
 		if not frame["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
-			addonTbl.CreateWidget("FontString", "title", L["RELEASE"] .. L["ADDON_NAME_SETTINGS"], frame, "CENTER", frame.TitleBg, "CENTER", 5, 0);
-			--addonTbl.CreateWidget("Button", "stopAndStartButton", "Test", frame, "CENTER", frame.TitleBg, "CENTER", 5, 0, 1, 1, 1, 1);
+			addonTbl.CreateWidget("FontString", "title", L["RELEASE"] .. L["ADDON_NAME_SETTINGS"], frame, "CENTER", frame.TitleBg, "CENTER", 5, 0, nil, nil);
+			addonTbl.CreateWidget("Button", "stopAndStartButton", "|T"..addonTbl.icons[1]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -110, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "resetButton", "|T"..addonTbl.icons[2]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -80, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "|T"..addonTbl.icons[3]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -50, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "openOptionsButton", L["BUTTON_OPTIONS"], frame, "CENTER", frame, "CENTER", 90, 5, 75, 30);
 		end
 		
 		if frame then
@@ -69,6 +72,15 @@ local function Show(frame)
 		-- FRAME BEHAVIORS
 			-- Settings Frame X Button
 		frame.CloseButton:SetScript("OnClick", function(self) Hide(frame) end); -- When the player selects the X on the frame, hide it. Same behavior as typing the command consecutively.
+			-- Start and Stop Button
+		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"]) end);
+		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+			-- Reset Button
+		frame.resetButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RESET"]) end);
+		frame.resetButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+			-- Reload Last Session Button
+		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"]) end);
+		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 		
 		frame:Show();
 	end

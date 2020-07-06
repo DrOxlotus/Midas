@@ -4,10 +4,12 @@ local addon, addonTbl = ...;
 -- Module-Local Variables
 local L = addonTbl.L;
 
-addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, relativePos, xOffset, yOffset)
+addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, relativePos, xOffset, yOffset, length, width)
 	if type == "Button" then
 		frameName[name] = CreateFrame("Button", name, parent, "UIPanelButtonTemplate");
+		frameName[name]:RegisterForClicks("AnyUp");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
+		frameName[name]:SetSize(length, width);
 		frameName[name]:SetText(text);
 	elseif type == "CheckButton" then
 		frameName[name] = CreateFrame("CheckButton", name, parent, "UICheckButtonTemplate");
@@ -31,6 +33,8 @@ end
 	relativePos:	The position, relative to the parent, that the frame should be placed
 	xOffset:		From the final position, how many pixels left or right to offset the frame
 	yOffset:		From the final position, how many pixels up or down to offset the frame
+	length:			From the final position, how many pixels up or down to offset the frame
+	width:			From the final position, how many pixels up or down to offset the frame
 	
 	Supported Widgets:
 	- Button
