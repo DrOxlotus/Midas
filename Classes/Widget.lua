@@ -5,7 +5,11 @@ local addon, addonTbl = ...;
 local L = addonTbl.L;
 
 addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, relativePos, xOffset, yOffset)
-	if type == "CheckButton" then
+	if type == "Button" then
+		frameName[name] = CreateFrame("Button", name, parent, "SecureActionButtonTemplate");
+		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
+		frameName[name].text:SetText(text);
+	elseif type == "CheckButton" then
 		frameName[name] = CreateFrame("CheckButton", name, parent, "UICheckButtonTemplate");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
 		frameName[name].text:SetText(text);
@@ -31,6 +35,7 @@ end
 	width:			The height of the widget (optional arg)
 	
 	Supported Widgets:
+	- Button
 	- CheckButton
 	- FontString
 ]]

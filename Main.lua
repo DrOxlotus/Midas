@@ -9,6 +9,8 @@ local addon, addonTbl = ...;
 -- Module-Local Variables
 local eventFrame = CreateFrame("Frame");
 local isPlayerInCombat;
+local playerName;
+local realmName;
 
 for _, event in ipairs(addonTbl.events) do
 	frame:RegisterEvent(event);
@@ -46,7 +48,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		addonTbl.LoadSettings(true);
 		addonTbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = addonTbl["locale"];
 		addonTbl.GetCurrentMap();
-		playerName = UnitName("player");
+		playerName, realmName = UnitName(L["PLAYER"]);
 		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
 	end
 end);
