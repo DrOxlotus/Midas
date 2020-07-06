@@ -9,11 +9,12 @@ local addon, addonTbl = ...;
 -- Module-Local Variables
 local eventFrame = CreateFrame("Frame");
 local isPlayerInCombat;
+local L = addonTbl.L;
 local playerName;
 local realmName;
 
 for _, event in ipairs(addonTbl.events) do
-	frame:RegisterEvent(event);
+	eventFrame:RegisterEvent(event);
 end
 -- Synopsis: Registers all events that the addon cares about using the events table in the corresponding table file.
 

@@ -19,8 +19,8 @@ addonTbl.SetLocale = function(locale)
 		-- ERROR MESSAGES
 		
 		-- GENERAL
-		L["ADDON_NAME"] 							= "|cff00ccff" .. addon .. "|r: ";
-		L["ADDON_NAME_SETTINGS"] 					= "|cff00ccff" .. addon .. "|r";
+		L["ADDON_NAME"] 							= "|cffCCA6F0" .. addon .. "|r: ";
+		L["ADDON_NAME_SETTINGS"] 					= "|cffCCA6F0" .. addon .. "|r";
 		L["RELEASE"] 								= "[" .. GetAddOnMetadata(addon, "Version") .. "] ";
 		L["DATE"]									= date("%m/%d/%Y");
 		

@@ -22,7 +22,7 @@ addonTbl.LoadSettings = function(doNotOpen)
 	if doNotOpen then
 		MidasSettings = {locale = GetOptions("locale")};
 	else
-		addonTbl.CreateFrame("MidasMainFrame", 200, 125);
+		addonTbl.CreateFrame("MidasMainFrame", 275, 100);
 	end
 end
 --[[

@@ -53,6 +53,7 @@ local function Show(frame)
 		-- WIDGETS
 		if not frame["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
 			addonTbl.CreateWidget("FontString", "title", L["RELEASE"] .. L["ADDON_NAME_SETTINGS"], frame, "CENTER", frame.TitleBg, "CENTER", 5, 0);
+			--addonTbl.CreateWidget("Button", "stopAndStartButton", "Test", frame, "CENTER", frame.TitleBg, "CENTER", 5, 0, 1, 1, 1, 1);
 		end
 		
 		if frame then
@@ -62,7 +63,7 @@ local function Show(frame)
 			frame:SetScript("OnDragStart", frame.StartMoving);
 			frame:SetScript("OnDragStop", frame.StopMovingOrSizing);
 			frame:ClearAllPoints();
-			frame:SetPoint("CENTER", WorldFrame, "CENTER");
+			frame:SetPoint("CENTER", PlayerFrame, "CENTER", 50, -100);
 		end
 		
 		-- FRAME BEHAVIORS
