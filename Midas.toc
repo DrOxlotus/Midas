@@ -2,10 +2,13 @@
 ## Version: 1.0
 ## Title: Midas
 ## Notes: Tracks gold acquired within an arbitrary window of time. Stores a history of gold acquired by instance and character.
-## Author: Oxlotus/Lightsky/Smallbuttons
-## SavedVariables: MidasHistoryDB
-## SavedVariablesPerCharacter: MidasCharacterHistoryDB
+## Author: iamlightsky
+## SavedVariables: MidasSettings
+## SavedVariablesPerCharacter: MidasCharacterHistory
 
 L.lua
+Classes\Widget.lua
+Classes\Frame.lua
 Commands.lua
+Settings.lua
 Main.lua
