@@ -1,8 +1,5 @@
 <Bindings>
-	<Binding name="MIDAS_OPEN_CLOSE_OPTIONS" header="MIDAS" category="ADDONS">
-		MidasKeyPressHandler(GetBindingKey("MIDAS_OPEN_CLOSE_OPTIONS"));
-	</Binding>
-	<Binding name="MIDAS_OPEN_CLOSE_WINDOW" category="ADDONS">
-		MidasKeyPressHandler(GetBindingKey("MIDAS_OPEN_CLOSE_WINDOW"));
+	<Binding name="MIDAS_OPEN_MENU" header="MIDAS" category="ADDONS">
+		MidasKeyPressHandler(GetBindingKey("MIDAS_OPEN_MENU"));
 	</Binding>
 </Bindings>

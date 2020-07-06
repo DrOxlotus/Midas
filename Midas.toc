@@ -3,7 +3,7 @@
 ## Title: Midas
 ## Notes: Tracks gold acquired within an arbitrary window of time. Stores a history of gold acquired by instance and character.
 ## Author: iamlightsky
-## SavedVariables: MidasSettings
+## SavedVariables: MidasMaps, MidasSettings
 ## SavedVariablesPerCharacter: MidasCharacterHistory
 
 L.lua
@@ -13,4 +13,7 @@ DB\Events.lua
 DB\Variables.lua
 Commands.lua
 Settings.lua
+Handlers\Functions.lua
+Handlers\Maps.lua
+Handlers\Keybinds.lua
 Main.lua

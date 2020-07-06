@@ -25,8 +25,10 @@ addonTbl.SetLocale = function(locale)
 		L["DATE"]									= date("%m/%d/%Y");
 		
 		-- GLOBAL STRINGS
+		L["KEYBIND_SETTING_OPEN_MENU"]				= "Open Menu";
 		
 		-- INFORMATIONAL MESSAGES
+		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";
 		
 		-- MODE NAMES
 		
