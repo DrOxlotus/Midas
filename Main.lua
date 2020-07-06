@@ -8,6 +8,7 @@ local addon, addonTbl = ...;
 
 -- Module-Local Variables
 local eventFrame = CreateFrame("Frame");
+local isPlayerInCombat;
 
 for _, event in ipairs(addonTbl.events) do
 	frame:RegisterEvent(event);
@@ -29,6 +30,17 @@ end
 ]]
 
 eventFrame:SetScript("OnEvent", function(self, event, ...)
+	if event == "INSTANCE_GROUP_SIZE_CHANGED" or "ZONE_CHANGED_NEW_AREA" then
+		if IsPlayerInCombat() then -- Maps can't be updated in combat.
+			while isPlayerInCombat do
+				C_Timer.After(0, function() C_Timer.After(3, function() IsPlayerInCombat() end); end);
+			end
+		end
+		
+		C_Timer.After(0, function() C_Timer.After(3, function() addonTbl.GetCurrentMap() end); end); -- Wait 3 seconds before asking the game for the new map.
+	end
+	-- Synopsis: Get the player's map when they change zones or enter instances.
+	
 	if event == "PLAYER_LOGIN" then
 		addonTbl.InitializeSavedVars(); -- Initialize the tables if they're nil. This is usually only for players that first install the addon.
 		addonTbl.LoadSettings(true);
