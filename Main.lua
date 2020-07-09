@@ -10,6 +10,7 @@ local addon, addonTbl = ...;
 local eventFrame = CreateFrame("Frame");
 local isPlayerInCombat;
 local L = addonTbl.L;
+local currentMoney = 0;
 local playerName;
 local realmName;
 
@@ -45,27 +46,29 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	-- Synopsis: Get the player's map when they change zones or enter instances.
 	
 	if event == "PLAYER_LOGIN" then
+		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
 		addonTbl.InitializeSavedVars(); -- Initialize the tables if they're nil. This is usually only for players that first install the addon.
 		addonTbl.LoadSettings(true);
 		addonTbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = addonTbl["locale"];
 		addonTbl.GetCurrentMap();
+		currentMoney = GetMoney(); addonTbl.currentMoney = currentMoney;
 		playerName, realmName = UnitName(L["PLAYER"]);
-		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
 	end
 	-- Synopsis: Loads data in after the player logs in or reloads.
 	
 	if event == "PLAYER_LOGOUT" then
+		MidasCharacterHistory.moneyObtainedLastSession = addonTbl.moneyObtainedThisSession;
+		MidasCharacterHistory.playerMoneyLastSession = currentMoney;
 	end
 	-- Synopsis: Writes data to the cache.
 	
 	if event == "PLAYER_MONEY" then
 		if addonTbl.recorderState == 1 then
-			if addonTbl.money > GetMoney() then return end; -- The event fired because the player lost money.
-			local moneyObtainedFromSource = GetMoney() - addonTbl.money;
-			print("You had " .. GetCoinTextureString(addonTbl.money) .. ".");
-			print("You gained " .. GetCoinTextureString(moneyObtainedFromSource) .. ".");
-			print("You now have " .. GetCoinTextureString((addonTbl.money + moneyObtainedFromSource)) .. ".");
-			addonTbl.money = GetMoney();
+			if currentMoney > GetMoney() then return end; -- The event fired because the player lost money.
+			local rawMoneyObtained = GetMoney() - currentMoney;
+			addonTbl.moneyObtainedThisSession = addonTbl.moneyObtainedThisSession + rawMoneyObtained;
+			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
+			currentMoney = GetMoney(); addonTbl.currentMoney = currentMoney;
 		end
 	end
 	-- Synopsis: Tracks the money the player accrues from various sources. (eg. looting enemies, completing quests, etc.)

@@ -18,6 +18,12 @@ local function StartAndStop()
 	addonTbl.recorderState = recorderState;
 end
 
+local function LoadLastSession()
+	recorderState = 1; addonTbl.recorderState = recorderState;
+	addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
+	addonTbl.UpdateWidget("money", frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
+end
+
 local function ShowTooltip(self, text, state)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	if state == 1 then
@@ -75,7 +81,7 @@ local function Show(frame)
 			addonTbl.CreateWidget("Button", "resetButton", "|T"..addonTbl.icons[2]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -80, 5, 30, 30);
 			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "|T"..addonTbl.icons[3]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -50, 5, 30, 30);
 			addonTbl.CreateWidget("Button", "openOptionsButton", L["BUTTON_OPTIONS"], frame, "CENTER", frame, "CENTER", 90, 5, 75, 30);
-			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(addonTbl.money), frame, "CENTER", frame, "CENTER", 65, -30, nil, nil);
+			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(addonTbl.currentMoney), frame, "CENTER", frame, "CENTER", 65, -30, nil, nil);
 		end
 		
 		if frame then
@@ -101,6 +107,7 @@ local function Show(frame)
 			-- Reload Last Session Button
 		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"], nil) end);
 		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.reloadLastSessionButton:SetScript("OnClick", function(self) LoadLastSession() end);
 		
 		frame:Show();
 	end
@@ -119,6 +126,7 @@ addonTbl.CreateFrame = function(name, height, width)
 	else
 		Show(frame);
 	end
+	addonTbl.frame = frame;
 end
 -- Synopsis: Responsible for building a frame.
 --[[
