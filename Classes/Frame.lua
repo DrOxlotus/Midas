@@ -5,20 +5,26 @@ local addon, addonTbl = ...;
 local frame;
 local isFrameVisible;
 local L = addonTbl.L;
+local timerState = 0;
 
 local function StartAndStop()
-	if timerStatus == 1 then
-		addonTbl.timerStatus = 0;
-		print(L["INFO_MSG_TIMER_DISABLED"]);
+	if timerState == 1 then
+		timerState = 0;
 	else
-		addonTbl.timerStatus = 1;
-		print(L["INFO_MSG_TIMER_ENABLED"]);
+		timerState = 1;
 	end
+	addonTbl.timerState = timerState;
 end
 
-local function ShowTooltip(self, text)
+local function ShowTooltip(self, text, state)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	GameTooltip:SetText(text);
+	if state == 1 then
+		GameTooltip:SetText(text .. "\n\n" .. L["INFO_MSG_ENABLED"]);
+	elseif state == 0 then
+		GameTooltip:SetText(text .. "\n\n" .. L["INFO_MSG_DISABLED"]);
+	else
+		GameTooltip:SetText(text);
+	end
 	GameTooltip:Show();
 end
 -- Displays a custom tooltip.
@@ -83,14 +89,14 @@ local function Show(frame)
 			-- Settings Frame X Button
 		frame.CloseButton:SetScript("OnClick", function(self) Hide(frame) end); -- When the player selects the X on the frame, hide it. Same behavior as typing the command consecutively.
 			-- Start and Stop Button
-		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"]) end);
+		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], timerState) end);
 		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 		frame.stopAndStartButton:SetScript("OnClick", function(self) StartAndStop() end);
 			-- Reset Button
-		frame.resetButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RESET"]) end);
+		frame.resetButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RESET"], nil) end);
 		frame.resetButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 			-- Reload Last Session Button
-		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"]) end);
+		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"], nil) end);
 		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 		
 		frame:Show();

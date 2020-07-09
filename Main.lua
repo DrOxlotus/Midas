@@ -54,12 +54,14 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	end
 	
 	if event == "PLAYER_MONEY" then
-		if addonTbl.money > GetMoney() then return end; -- The event fired because the player lost money.
-		local moneyObtainedFromSource = GetMoney() - addonTbl.money;
-		print("You had " .. GetCoinTextureString(addonTbl.money) .. ".");
-		print("You gained " .. GetCoinTextureString(moneyObtainedFromSource) .. ".");
-		print("You now have " .. GetCoinTextureString((addonTbl.money + moneyObtainedFromSource)) .. ".");
-		addonTbl.money = GetMoney();
+		if addonTbl.timerState == 1 then
+			if addonTbl.money > GetMoney() then return end; -- The event fired because the player lost money.
+			local moneyObtainedFromSource = GetMoney() - addonTbl.money;
+			print("You had " .. GetCoinTextureString(addonTbl.money) .. ".");
+			print("You gained " .. GetCoinTextureString(moneyObtainedFromSource) .. ".");
+			print("You now have " .. GetCoinTextureString((addonTbl.money + moneyObtainedFromSource)) .. ".");
+			addonTbl.money = GetMoney();
+		end
 	end
 	-- Synopsis: Tracks the money the player accrues from various sources. (eg. looting enemies, completing quests, etc.)
 end);

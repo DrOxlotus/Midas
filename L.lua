@@ -33,8 +33,8 @@ addonTbl.SetLocale = function(locale)
 		
 		-- INFORMATIONAL MESSAGES
 		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";
-		L["INFO_MSG_TIMER_DISABLED"]				= L["ADDON_NAME"] .. "Timer disabled.";
-		L["INFO_MSG_TIMER_ENABLED"]					= L["ADDON_NAME"] .. "Timer enabled.";
+		L["INFO_MSG_DISABLED"]						= "|cffffffffCurrent State|r: Disabled";
+		L["INFO_MSG_ENABLED"]						= "|cffffffffCurrent State|r: Enabled";
 		
 		-- MODE NAMES
 		
