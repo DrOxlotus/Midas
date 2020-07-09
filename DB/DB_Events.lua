@@ -5,8 +5,6 @@ local addon, addonTbl = ...;
 local L = addonTbl.L;
 
 local events = {
-	--"CHAT_MSG_MONEY",
-	--"CHAT_MSG_SYSTEM",
 	"INSTANCE_GROUP_SIZE_CHANGED",
 	"MAIL_INBOX_UPDATE",
 	"MERCHANT_CLOSED",

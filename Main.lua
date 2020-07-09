@@ -33,14 +33,6 @@ end
 ]]
 
 eventFrame:SetScript("OnEvent", function(self, event, ...)
-	--[[if event == "CHAT_MSG_MONEY" then
-		local rawLootedMoney = GetMoney() - addonTbl.money;
-		print("You had " .. GetCoinTextureString(addonTbl.money) .. " before you looted.");
-		print("You looted " .. GetCoinTextureString(rawLootedMoney) .. " from your target(s).");
-		print("You now have " .. GetCoinTextureString((addonTbl.money + rawLootedMoney)) .. ".");
-		addonTbl.money = GetMoney();
-	end]]
-	
 	if event == "INSTANCE_GROUP_SIZE_CHANGED" or "ZONE_CHANGED_NEW_AREA" then
 		if IsPlayerInCombat() then -- Maps can't be updated in combat.
 			while isPlayerInCombat do
@@ -69,4 +61,5 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		print("You now have " .. GetCoinTextureString((addonTbl.money + moneyObtainedFromSource)) .. ".");
 		addonTbl.money = GetMoney();
 	end
+	-- Synopsis: Tracks the money the player accrues from various sources. (eg. looting enemies, completing quests, etc.)
 end);
