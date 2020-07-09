@@ -89,7 +89,7 @@ local function Show(frame)
 			-- Settings Frame X Button
 		frame.CloseButton:SetScript("OnClick", function(self) Hide(frame) end); -- When the player selects the X on the frame, hide it. Same behavior as typing the command consecutively.
 			-- Start and Stop Button
-		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], timerState) end);
+		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], recorderState) end);
 		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 		frame.stopAndStartButton:SetScript("OnClick", function(self) StartAndStop() end);
 			-- Reset Button
