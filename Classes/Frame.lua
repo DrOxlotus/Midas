@@ -51,14 +51,6 @@ end
 	self:			This is the instance of the GameTooltip object
 ]]
 
-local function PlaySound(soundKit)
-	PlaySound(soundKit);
-end
--- Synopsis: Plays the provided soundkit.
---[[
-	soundKit:		Name of the soundkit to play (https://github.com/Gethe/wow-ui-source/blob/live/SharedXML/SoundKitConstants.lua)
-]]
-
 local function Hide(frame)
 	isFrameVisible = false;
 	frame:Hide();
