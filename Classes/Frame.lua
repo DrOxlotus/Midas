@@ -7,13 +7,13 @@ local isFrameVisible;
 local L = addonTbl.L;
 local recorderState = 0;
 
-local function StartAndStop()
-	if recorderState == 1 then
+local function StartAndPause()
+	if recorderState == 1 then -- Recorder is active so pause it.
 		recorderState = 0;
 		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.currentMoney));
-	else
+	else -- Recorder is paused so start it.
 		recorderState = 1;
-		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(0));
+		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
 	end
 	addonTbl.recorderState = recorderState;
 end
