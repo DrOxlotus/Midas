@@ -52,6 +52,11 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		playerName, realmName = UnitName(L["PLAYER"]);
 		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
 	end
+	-- Synopsis: Loads data in after the player logs in or reloads.
+	
+	if event == "PLAYER_LOGOUT" then
+	end
+	-- Synopsis: Writes data to the cache.
 	
 	if event == "PLAYER_MONEY" then
 		if addonTbl.timerState == 1 then
