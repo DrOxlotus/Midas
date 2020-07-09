@@ -5,15 +5,15 @@ local addon, addonTbl = ...;
 local frame;
 local isFrameVisible;
 local L = addonTbl.L;
-local timerState = 0;
+local recorderState = 0;
 
 local function StartAndStop()
-	if timerState == 1 then
-		timerState = 0;
+	if recorderState == 1 then
+		recorderState = 0;
 	else
-		timerState = 1;
+		recorderState = 1;
 	end
-	addonTbl.timerState = timerState;
+	addonTbl.recorderState = recorderState;
 end
 
 local function ShowTooltip(self, text, state)

@@ -59,7 +59,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	-- Synopsis: Writes data to the cache.
 	
 	if event == "PLAYER_MONEY" then
-		if addonTbl.timerState == 1 then
+		if addonTbl.recorderState == 1 then
 			if addonTbl.money > GetMoney() then return end; -- The event fired because the player lost money.
 			local moneyObtainedFromSource = GetMoney() - addonTbl.money;
 			print("You had " .. GetCoinTextureString(addonTbl.money) .. ".");
