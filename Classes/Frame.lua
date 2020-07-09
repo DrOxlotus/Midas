@@ -10,7 +10,7 @@ local recorderState = 0;
 local function StartAndStop()
 	if recorderState == 1 then
 		recorderState = 0;
-		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.money));
+		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.currentMoney));
 	else
 		recorderState = 1;
 		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(0));
@@ -18,7 +18,27 @@ local function StartAndStop()
 	addonTbl.recorderState = recorderState;
 end
 
+local function NewSession()
+	StaticPopupDialogs["Midas_NewSession"] = {
+		text = L["INFO_MSG_NEW_SESSION"],
+		button1 = L["YES"],
+		button2 = L["NO"],
+		OnAccept = function()
+			MidasCharacterHistory.moneyObtainedLastSession = 0; addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
+			recorderState = 0; addonTbl.recorderState = recorderState;
+			addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.currentMoney));
+		end,
+		timeout = 0,
+		whileDead = true,
+		hideOnEscape = true,
+		preferredIndex = 3,
+	};
+	
+	StaticPopup_Show("Midas_NewSession");
+end
+
 local function LoadLastSession()
+	if MidasCharacterHistory.moneyObtainedLastSession == 0 or MidasCharacterHistory.moneyObtainedLastSession == nil then return end;
 	recorderState = 1; addonTbl.recorderState = recorderState;
 	addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
 	addonTbl.UpdateWidget("money", frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
@@ -70,10 +90,10 @@ local function Show(frame)
 		if not frame["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
 			addonTbl.CreateWidget("FontString", "title", L["RELEASE"] .. L["ADDON_NAME_SETTINGS"], frame, "CENTER", frame.TitleBg, "CENTER", 5, 0, nil, nil);
 			addonTbl.CreateWidget("Button", "stopAndStartButton", "|T"..addonTbl.icons[1]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -110, 5, 30, 30);
-			addonTbl.CreateWidget("Button", "resetButton", "|T"..addonTbl.icons[2]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -80, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "newSessionButton", "|T"..addonTbl.icons[2]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -80, 5, 30, 30);
 			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "|T"..addonTbl.icons[3]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -50, 5, 30, 30);
 			addonTbl.CreateWidget("Button", "openOptionsButton", L["BUTTON_OPTIONS"], frame, "CENTER", frame, "CENTER", 90, 5, 75, 30);
-			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(addonTbl.currentMoney), frame, "CENTER", frame, "CENTER", 65, -30, nil, nil);
+			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(addonTbl.currentMoney), frame, "CENTER", frame, "CENTER", 60, -30, nil, nil);
 		end
 		
 		if frame then
@@ -93,9 +113,10 @@ local function Show(frame)
 		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], recorderState) end);
 		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 		frame.stopAndStartButton:SetScript("OnClick", function(self) StartAndStop() end);
-			-- Reset Button
-		frame.resetButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RESET"], nil) end);
-		frame.resetButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+			-- New Session Button
+		frame.newSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_NEW_SESSION"], nil) end);
+		frame.newSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.newSessionButton:SetScript("OnClick", function(self) NewSession() end);
 			-- Reload Last Session Button
 		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"], nil) end);
 		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);

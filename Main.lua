@@ -57,7 +57,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	-- Synopsis: Loads data in after the player logs in or reloads.
 	
 	if event == "PLAYER_LOGOUT" then
-		MidasCharacterHistory.moneyObtainedLastSession = addonTbl.moneyObtainedThisSession;
+		if addonTbl.moneyObtainedThisSession > 0 then MidasCharacterHistory.moneyObtainedLastSession = addonTbl.moneyObtainedThisSession end;
 		MidasCharacterHistory.playerMoneyLastSession = currentMoney;
 	end
 	-- Synopsis: Writes data to the cache.

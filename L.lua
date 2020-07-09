@@ -28,13 +28,16 @@ addonTbl.SetLocale = function(locale)
 		L["KEYBIND_SETTING_OPEN_MENU"]				= "Open Menu";
 		L["BUTTON_OPTIONS"]							= "Options";
 		L["BUTTON_RELOAD_LAST_SESSION"]				= "|cffffffffLoad Previous Session|r: Pick up where you left off.";
-		L["BUTTON_RESET"]							= "|cffffffffNew Session|r: Start a new session. It's like logging off without logging off.";
+		L["BUTTON_NEW_SESSION"]						= "|cffffffffNew Session|r: Start a new session. This WILL wipe your last session's data!";
 		L["BUTTON_START_AND_STOP"]					= "|cffffffffRecorder|r: Enables and disables the recorder.";
+		L["NO"]										= "No";
+		L["YES"]									= "Yes";
 		
 		-- INFORMATIONAL MESSAGES
 		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";
 		L["INFO_MSG_DISABLED"]						= "|cffffffffCurrent State|r: Disabled";
 		L["INFO_MSG_ENABLED"]						= "|cffffffffCurrent State|r: Enabled";
+		L["INFO_MSG_NEW_SESSION"]					= "Are you sure you want to start a new session?";
 		
 		-- MODE NAMES
 		
