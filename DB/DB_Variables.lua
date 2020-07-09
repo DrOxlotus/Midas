@@ -25,6 +25,10 @@ addonTbl.isInInstance 										= isInInstance;
 addonTbl.isMidasLoaded 										= isMidasLoaded;
 
 -- INTEGERS
+local money													= GetMoney();
+local timerStatus											= 0;
+addonTbl.money												= money;
+addonTbl.timerStatus										= timerStatus;
 
 -- STRINGS
 local currentMap 											= "";

@@ -6,6 +6,16 @@ local frame;
 local isFrameVisible;
 local L = addonTbl.L;
 
+local function StartAndStop()
+	if timerStatus == 1 then
+		addonTbl.timerStatus = 0;
+		print(L["INFO_MSG_TIMER_DISABLED"]);
+	else
+		addonTbl.timerStatus = 1;
+		print(L["INFO_MSG_TIMER_ENABLED"]);
+	end
+end
+
 local function ShowTooltip(self, text)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	GameTooltip:SetText(text);
@@ -75,6 +85,7 @@ local function Show(frame)
 			-- Start and Stop Button
 		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"]) end);
 		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.stopAndStartButton:SetScript("OnClick", function(self) StartAndStop() end);
 			-- Reset Button
 		frame.resetButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RESET"]) end);
 		frame.resetButton:SetScript("OnLeave", function(self) HideTooltip(self) end);

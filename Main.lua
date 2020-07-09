@@ -33,6 +33,14 @@ end
 ]]
 
 eventFrame:SetScript("OnEvent", function(self, event, ...)
+	--[[if event == "CHAT_MSG_MONEY" then
+		local rawLootedMoney = GetMoney() - addonTbl.money;
+		print("You had " .. GetCoinTextureString(addonTbl.money) .. " before you looted.");
+		print("You looted " .. GetCoinTextureString(rawLootedMoney) .. " from your target(s).");
+		print("You now have " .. GetCoinTextureString((addonTbl.money + rawLootedMoney)) .. ".");
+		addonTbl.money = GetMoney();
+	end]]
+	
 	if event == "INSTANCE_GROUP_SIZE_CHANGED" or "ZONE_CHANGED_NEW_AREA" then
 		if IsPlayerInCombat() then -- Maps can't be updated in combat.
 			while isPlayerInCombat do
@@ -51,5 +59,14 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		addonTbl.GetCurrentMap();
 		playerName, realmName = UnitName(L["PLAYER"]);
 		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
+	end
+	
+	if event == "PLAYER_MONEY" then
+		if addonTbl.money > GetMoney() then return end; -- The event fired because the player lost money.
+		local moneyObtainedFromSource = GetMoney() - addonTbl.money;
+		print("You had " .. GetCoinTextureString(addonTbl.money) .. ".");
+		print("You gained " .. GetCoinTextureString(moneyObtainedFromSource) .. ".");
+		print("You now have " .. GetCoinTextureString((addonTbl.money + moneyObtainedFromSource)) .. ".");
+		addonTbl.money = GetMoney();
 	end
 end);
