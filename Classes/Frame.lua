@@ -21,9 +21,9 @@ end
 local function ShowTooltip(self, text, state)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	if state == 1 then
-		GameTooltip:SetText(text .. "\n\n" .. L["INFO_MSG_ENABLED"]);
+		GameTooltip:SetText(text .. "\n" .. L["INFO_MSG_ENABLED"]);
 	elseif state == 0 then
-		GameTooltip:SetText(text .. "\n\n" .. L["INFO_MSG_DISABLED"]);
+		GameTooltip:SetText(text .. "\n" .. L["INFO_MSG_DISABLED"]);
 	else
 		GameTooltip:SetText(text);
 	end

@@ -10,7 +10,7 @@ local icons = {
 		["iconID"] = 134377, -- Clockwork Heart
 	},
 	{
-		["iconID"] = 450906, -- Reset
+		["iconID"] = 134149, -- Save Krennan
 	},
 	{
 		["iconID"] = 252180, -- Passenger Loaded
