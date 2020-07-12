@@ -11,6 +11,7 @@ addonTbl.InitializeSavedVars = function()
 	if MidasSettings == nil then MidasSettings = {} end;
 	-- Character SavedVars
 	if MidasCharacterHistory == nil then MidasCharacterHistory = {} end;
+	if MidasCharacterHistory["Instances"] == nil then MidasCharacterHistory["Instances"] = {} end;
 end
 
 addonTbl.StartAndPause = function()

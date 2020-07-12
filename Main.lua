@@ -69,6 +69,11 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 			addonTbl.moneyObtainedThisSession = addonTbl.moneyObtainedThisSession + rawMoneyObtained;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
 			currentMoney = GetMoney(); addonTbl.currentMoney = currentMoney;
+			
+			if addonTbl.isInInstance then
+				if not MidasCharacterHistory["Instances"][addonTbl.currentMap] then MidasCharacterHistory["Instances"][addonTbl.currentMap] = 0 end; -- To prevent arithmetic nil errors on the next step.
+				MidasCharacterHistory["Instances"][addonTbl.currentMap] = MidasCharacterHistory["Instances"][addonTbl.currentMap] + rawMoneyObtained;
+			end
 		end
 	end
 	-- Synopsis: Tracks the money the player accrues from various sources. (eg. looting enemies, completing quests, etc.)
