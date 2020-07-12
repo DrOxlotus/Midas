@@ -6,12 +6,21 @@ local L = addonTbl.L;
 
 addonTbl.GetCurrentMap = function()
 	local uiMapID = C_Map.GetBestMapForUnit("player");
+	addonTbl.isInInstance = IsInInstance();
 	
 	if uiMapID then -- A map ID was found and is usable.
+		addonTbl.uiMapID = uiMapID;
 		local uiMap = C_Map.GetMapInfo(uiMapID);
 		if not uiMap.mapID then return end;
 		if not MidasMaps[uiMap.mapID] then
 			MidasMaps[uiMap.mapID] = uiMap.name;
+		end
+		
+		if addonTbl.isInInstance then
+			if not addonTbl.instances[addonTbl.uiMapID] then
+				addonTbl.instances[uiMapID] = uiMap.name;
+				print(L["ADDON_NAME"] .. L["ERR_MSG_MAP_NOT_SUPPORTED"] .. addonTbl.uiMapID);
+			end
 		end
 
 		addonTbl.currentMap = uiMap.name;

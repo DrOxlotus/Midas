@@ -5,7 +5,6 @@ local addon, addonTbl = ...;
 local frame;
 local isFrameVisible;
 local L = addonTbl.L;
-local recorderState = 0;
 
 local function ShowTooltip(self, text, state)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");

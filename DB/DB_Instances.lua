@@ -4,7 +4,7 @@ local addon, addonTbl = ...;
 -- Module-Local Variables
 local L = addonTbl.L;
 
-local dungeons = {
+local instances = {
 	[67]	= "Maraudon",
 	[68]	= "Maraudon",
 	[129]	= "The Nexus",
@@ -259,4 +259,4 @@ local dungeons = {
 	[618]	= "Upper Blackrock Spire",
 };
 
-addonTbl.dungeons = dungeons;
+addonTbl.instances = instances;

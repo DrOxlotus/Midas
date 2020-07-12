@@ -17,6 +17,7 @@ addonTbl.SetLocale = function(locale)
 		L["SLASH_CMD_1"]							= "/midas";
 		
 		-- ERROR MESSAGES
+		L["ERR_MSG_MAP_NOT_SUPPORTED"]				= "Map not found. The map was temporarily added to the instances table so data can log. Please report the following map ID: ";
 		
 		-- GENERAL
 		L["ADDON_NAME"] 							= "|cffCCA6F0" .. addon .. "|r: ";
