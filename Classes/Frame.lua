@@ -7,43 +7,6 @@ local isFrameVisible;
 local L = addonTbl.L;
 local recorderState = 0;
 
-local function StartAndPause()
-	if recorderState == 1 then -- Recorder is active so pause it.
-		recorderState = 0;
-		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.currentMoney));
-	else -- Recorder is paused so start it.
-		recorderState = 1;
-		addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
-	end
-	addonTbl.recorderState = recorderState;
-end
-
-local function NewSession()
-	StaticPopupDialogs["Midas_NewSession"] = {
-		text = L["INFO_MSG_NEW_SESSION"],
-		button1 = L["YES"],
-		button2 = L["NO"],
-		OnAccept = function()
-			MidasCharacterHistory.moneyObtainedLastSession = 0; addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
-			recorderState = 0; addonTbl.recorderState = recorderState;
-			addonTbl.UpdateWidget("money", frame, GetCoinTextureString(addonTbl.currentMoney));
-		end,
-		timeout = 0,
-		whileDead = true,
-		hideOnEscape = true,
-		preferredIndex = 3,
-	};
-	
-	StaticPopup_Show("Midas_NewSession");
-end
-
-local function LoadLastSession()
-	if MidasCharacterHistory.moneyObtainedLastSession == 0 or MidasCharacterHistory.moneyObtainedLastSession == nil then return end;
-	recorderState = 1; addonTbl.recorderState = recorderState;
-	addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
-	addonTbl.UpdateWidget("money", frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
-end
-
 local function ShowTooltip(self, text, state)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	if state == 1 then
