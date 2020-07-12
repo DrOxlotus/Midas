@@ -75,15 +75,15 @@ local function Show(frame)
 			-- Start and Stop Button
 		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], recorderState) end);
 		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
-		frame.stopAndStartButton:SetScript("OnClick", function(self) StartAndPause() end);
+		frame.stopAndStartButton:SetScript("OnClick", function(self) addonTbl.StartAndPause() end);
 			-- New Session Button
 		frame.newSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_NEW_SESSION"], nil) end);
 		frame.newSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
-		frame.newSessionButton:SetScript("OnClick", function(self) NewSession() end);
+		frame.newSessionButton:SetScript("OnClick", function(self) addonTbl.NewSession() end);
 			-- Reload Last Session Button
 		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"], nil) end);
 		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
-		frame.reloadLastSessionButton:SetScript("OnClick", function(self) LoadLastSession() end);
+		frame.reloadLastSessionButton:SetScript("OnClick", function(self) addonTbl.LoadLastSession() end);
 		
 		frame:Show();
 	end
