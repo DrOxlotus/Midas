@@ -106,6 +106,7 @@ local instances = {
 	[274]	= "Old Hillsbrad Foothills",
 	[277]	= "Lost City of the Tol'vir",
 	[279] 	= "Wailing Caverns",
+	[280]	= "Maraudon",
 	[281]	= "Maraudon",
 	[282]	= "Baradin Hold",
 	[283]	= "Blackrock Caverns",
