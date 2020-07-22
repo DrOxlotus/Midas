@@ -3,7 +3,7 @@
 ## Title: Midas
 ## Notes: Tracks gold acquired within an arbitrary window of time. Stores a history of gold acquired by instance and character.
 ## Author: iamlightsky
-## SavedVariables: MidasMaps, MidasSettings
+## SavedVariables: MidasMaps, MidasRealms, MidasSettings
 ## SavedVariablesPerCharacter: MidasCharacterHistory
 
 L.lua

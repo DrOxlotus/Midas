@@ -8,6 +8,8 @@ local L = addonTbl.L;
 
 local function ShowTooltip(self, text, state)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	
+	-- Recorder button
 	if state == 1 then
 		GameTooltip:SetText(text .. "\n" .. L["INFO_MSG_ENABLED"]);
 	elseif state == 0 then
@@ -15,6 +17,14 @@ local function ShowTooltip(self, text, state)
 	else
 		GameTooltip:SetText(text);
 	end
+	
+	-- Mail Character EditBox
+	if addonTbl[addonTbl.realmName].mailCharacter ~= nil then
+		GameTooltip:SetText(string.format(text .. "\n" .. L["INFO_MSG_CURRENT_MAIL_CHARACTER"], addonTbl[addonTbl.realmName].mailCharacter));
+	else
+		GameTooltip:SetText(string.format(text .. "\n" .. L["INFO_MSG_MAIL_CHARACTER_NOT_SET"]));
+	end
+	
 	GameTooltip:Show();
 end
 -- Displays a custom tooltip.
@@ -47,17 +57,16 @@ local function Show(frame)
 		Hide(frame);
 	else
 		isFrameVisible = true;
-		
 		-- WIDGETS
 		if not frame["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
 			addonTbl.CreateWidget("FontString", "title", L["RELEASE"] .. L["ADDON_NAME_SETTINGS"], frame, "CENTER", frame.TitleBg, "CENTER", 5, 0, nil, nil);
-			addonTbl.CreateWidget("Button", "stopAndStartButton", "|T"..addonTbl.icons[1]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -110, 5, 30, 30);
-			addonTbl.CreateWidget("Button", "newSessionButton", "|T"..addonTbl.icons[2]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -80, 5, 30, 30);
-			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "|T"..addonTbl.icons[3]["iconID"]..":16|t", frame, "CENTER", frame, "CENTER", -50, 5, 30, 30);
-			addonTbl.CreateWidget("Button", "openOptionsButton", L["BUTTON_OPTIONS"], frame, "CENTER", frame, "CENTER", 90, 5, 75, 30);
-			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(addonTbl.currentMoney), frame, "CENTER", frame, "CENTER", 60, -30, nil, nil);
+			addonTbl.CreateWidget("Button", "stopAndStartButton", "A", frame, "CENTER", frame, "CENTER", -110, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "newSessionButton", "B", frame, "CENTER", frame, "CENTER", -80, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "C", frame, "CENTER", frame, "CENTER", -50, 5, 30, 30);
+			addonTbl.CreateWidget("EditBox", "mailCharacterEditBox", "", frame, "CENTER", frame, "CENTER", 75, 5, 120, 30);
+			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(GetMoney()), frame, "CENTER", frame, "CENTER", 60, -30, nil, nil);
 		end
-		
+			
 		if frame then
 			frame:SetMovable(true);
 			frame:EnableMouse(true);
@@ -67,12 +76,12 @@ local function Show(frame)
 			frame:ClearAllPoints();
 			frame:SetPoint("CENTER", PlayerFrame, "CENTER", 50, -100);
 		end
-		
+			
 		-- FRAME BEHAVIORS
 			-- Settings Frame X Button
 		frame.CloseButton:SetScript("OnClick", function(self) Hide(frame) end); -- When the player selects the X on the frame, hide it. Same behavior as typing the command consecutively.
 			-- Start and Stop Button
-		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], recorderState) end);
+		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], addonTbl.recorderState) end);
 		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 		frame.stopAndStartButton:SetScript("OnClick", function(self) addonTbl.StartAndPause() end);
 			-- New Session Button
@@ -83,6 +92,10 @@ local function Show(frame)
 		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"], nil) end);
 		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
 		frame.reloadLastSessionButton:SetScript("OnClick", function(self) addonTbl.LoadLastSession() end);
+			-- Mail Character Edit Box
+		frame.mailCharacterEditBox:SetScript("OnEnter", function(self) ShowTooltip(self, L["EDITBOX_MAIL_CHARACTER"], nil) end);
+		frame.mailCharacterEditBox:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.mailCharacterEditBox:SetScript("OnEnterPressed", function(self) addonTbl.SetMailCharacter(frame.mailCharacterEditBox:GetText(), frame.mailCharacterEditBox) end);
 		
 		frame:Show();
 	end

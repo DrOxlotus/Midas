@@ -52,7 +52,9 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		addonTbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = addonTbl["locale"];
 		addonTbl.GetCurrentMap();
 		currentMoney = GetMoney(); addonTbl.currentMoney = currentMoney;
-		playerName, realmName = UnitName(L["PLAYER"]);
+		playerName, realmName = UnitFullName(L["PLAYER"]); addonTbl.realmName = realmName;
+		
+		addonTbl[realmName] = MidasRealms[realmName];
 	end
 	-- Synopsis: Loads data in after the player logs in or reloads.
 	

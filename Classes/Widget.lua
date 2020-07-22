@@ -15,6 +15,14 @@ addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, rel
 		frameName[name] = CreateFrame("CheckButton", name, parent, "UICheckButtonTemplate");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
 		frameName[name].text:SetText(text);
+	elseif type == "EditBox" then
+		frameName[name] = CreateFrame("EditBox", name, parent, "InputBoxTemplate");
+		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
+		frameName[name]:SetMaxLetters(12);
+		frameName[name]:SetAutoFocus(false);
+		frameName[name]:SetFontObject("GameFontNormal");
+		frameName[name]:SetCursorPosition(3);
+		frameName[name]:SetSize(100, 35);
 	elseif type == "FontString" then
 		frameName[name] = frameName:CreateFontString(nil, "OVERLAY");
 		frameName[name]:SetFontObject("GameFontHighlight");
@@ -39,6 +47,7 @@ end
 	Supported Widgets:
 	- Button
 	- CheckButton
+	- EditBox
 	- FontString
 ]]
 

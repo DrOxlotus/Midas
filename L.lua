@@ -27,8 +27,8 @@ addonTbl.SetLocale = function(locale)
 		
 		-- GLOBAL STRINGS
 		L["KEYBIND_SETTING_OPEN_MENU"]				= "Open Menu";
-		L["BUTTON_OPTIONS"]							= "Options";
 		L["BUTTON_RELOAD_LAST_SESSION"]				= "|cffffffffLoad Previous Session|r: Pick up where you left off.";
+		L["EDITBOX_MAIL_CHARACTER"]					= "|cffffffffMail Character|r: The character you want Midas to send your excess gold to. Use ! to reset the entire system for this realm.";
 		L["BUTTON_NEW_SESSION"]						= "|cffffffffNew Session|r: Start a new session. This WILL wipe your last session's data!";
 		L["BUTTON_START_AND_STOP"]					= "|cffffffffRecorder|r: Enables and disables the recorder.";
 		L["NO"]										= "No";
@@ -38,7 +38,11 @@ addonTbl.SetLocale = function(locale)
 		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";
 		L["INFO_MSG_DISABLED"]						= "|cffffffffCurrent State|r: Disabled";
 		L["INFO_MSG_ENABLED"]						= "|cffffffffCurrent State|r: Enabled";
+		L["INFO_MSG_CURRENT_MAIL_CHARACTER"]		= "|cffffffffCurrent|r: %s";
 		L["INFO_MSG_NEW_SESSION"]					= "Are you sure you want to start a new session?";
+		L["INFO_MSG_MAIL_CHARACTER_SET"]			= "Successfully set your mail character to %s!";
+		L["INFO_MSG_MAIL_CHARACTER_RESET"]			= "Successfully reset your mail character to factory default.";
+		L["INFO_MSG_MAIL_CHARACTER_NOT_SET"]		= "|cffffffffNo mail character set for this realm|r.";
 		
 		-- MODE NAMES
 		

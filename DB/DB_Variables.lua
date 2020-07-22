@@ -5,18 +5,6 @@ local addon, addonTbl = ...;
 local L = addonTbl.L;
 
 -- ARRAYS (TABLES)
-local icons = {
-	{
-		["iconID"] = 134377, -- Clockwork Heart
-	},
-	{
-		["iconID"] = 134149, -- Save Krennan
-	},
-	{
-		["iconID"] = 252180, -- Passenger Loaded
-	},
-};
-addonTbl.icons												= icons;
 
 -- BOOLEANS
 local isInInstance 											= false;

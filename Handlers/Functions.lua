@@ -4,11 +4,14 @@ local addon, addonTbl = ...;
 -- Module-Local Variables
 local L = addonTbl.L;
 local recorderState = 0;
+local _, realmName = UnitFullName(L["PLAYER"]); addonTbl.realmName = realmName;
 
 addonTbl.InitializeSavedVars = function()
 	-- SavedVars
 	if MidasMaps == nil then MidasMaps = {} end;
 	if MidasSettings == nil then MidasSettings = {} end;
+	if MidasRealms == nil then MidasRealms = {} end;
+	if MidasRealms[realmName] == nil then MidasRealms[realmName] = {} end;
 	-- Character SavedVars
 	if MidasCharacterHistory == nil then MidasCharacterHistory = {} end;
 	if MidasCharacterHistory["Instances"] == nil then MidasCharacterHistory["Instances"] = {} end;
@@ -49,4 +52,22 @@ addonTbl.LoadLastSession = function()
 	recorderState = 1; addonTbl.recorderState = recorderState;
 	addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
 	addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
+end
+
+addonTbl.SetMailCharacter = function(mailCharacter, editBox)
+	if mailCharacter == "" then return end; -- To prevent setting the character to blank.
+	if mailCharacter == "!" then
+		addonTbl[realmName].mailCharacter = nil;
+		MidasRealms[realmName].mailCharacter = nil;
+		print(L["ADDON_NAME"] .. L["INFO_MSG_MAIL_CHARACTER_RESET"]);
+		editBox:SetText("");
+		return;
+	end
+	
+	MidasRealms[addonTbl.realmName].mailCharacter = mailCharacter;
+	addonTbl[addonTbl.realmName].mailCharacter = mailCharacter;
+	
+	editBox:SetText("");
+	
+	print(string.format(L["ADDON_NAME"] .. L["INFO_MSG_MAIL_CHARACTER_SET"], mailCharacter));
 end
