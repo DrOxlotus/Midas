@@ -11,8 +11,6 @@ local eventFrame = CreateFrame("Frame");
 local isPlayerInCombat;
 local L = addonTbl.L;
 local currentMoney = 0;
-local playerName;
-local realmName;
 
 for _, event in ipairs(addonTbl.events) do
 	eventFrame:RegisterEvent(event);
@@ -47,14 +45,16 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	
 	if event == "PLAYER_LOGIN" then
 		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
+		
+		-- The player's realm name is apparently nil at login. So ask again.
+		_, addonTbl.realmName = UnitFullName(L["PLAYER"]);
 		addonTbl.InitializeSavedVars(); -- Initialize the tables if they're nil. This is usually only for players that first install the addon.
 		addonTbl.LoadSettings(true);
 		addonTbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = addonTbl["locale"];
 		addonTbl.GetCurrentMap();
 		currentMoney = GetMoney(); addonTbl.currentMoney = currentMoney;
-		playerName, realmName = UnitFullName(L["PLAYER"]); addonTbl.realmName = realmName;
 		
-		addonTbl[realmName] = MidasRealms[realmName];
+		addonTbl[addonTbl.realmName] = MidasRealms[addonTbl.realmName];
 	end
 	-- Synopsis: Loads data in after the player logs in or reloads.
 	

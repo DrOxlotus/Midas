@@ -4,14 +4,13 @@ local addon, addonTbl = ...;
 -- Module-Local Variables
 local L = addonTbl.L;
 local recorderState = 0;
-local _, realmName = UnitFullName(L["PLAYER"]); addonTbl.realmName = realmName;
 
 addonTbl.InitializeSavedVars = function()
 	-- SavedVars
 	if MidasMaps == nil then MidasMaps = {} end;
 	if MidasSettings == nil then MidasSettings = {} end;
 	if MidasRealms == nil then MidasRealms = {} end;
-	if MidasRealms[realmName] == nil then MidasRealms[realmName] = {} end;
+	if MidasRealms[addonTbl.realmName] == nil then MidasRealms[addonTbl.realmName] = {} end;
 	-- Character SavedVars
 	if MidasCharacterHistory == nil then MidasCharacterHistory = {} end;
 	if MidasCharacterHistory["Instances"] == nil then MidasCharacterHistory["Instances"] = {} end;
@@ -57,8 +56,8 @@ end
 addonTbl.SetMailCharacter = function(mailCharacter, editBox)
 	if mailCharacter == "" then return end; -- To prevent setting the character to blank.
 	if mailCharacter == "!" then
-		addonTbl[realmName].mailCharacter = nil;
-		MidasRealms[realmName].mailCharacter = nil;
+		addonTbl[addonTbl.realmName].mailCharacter = nil;
+		MidasRealms[addonTbl.realmName].mailCharacter = nil;
 		print(L["ADDON_NAME"] .. L["INFO_MSG_MAIL_CHARACTER_RESET"]);
 		editBox:SetText("");
 		return;
