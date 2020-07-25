@@ -4,7 +4,7 @@ local addon, addonTbl = ...;
 -- Module-Local Variables
 local L = addonTbl.L;
 
-local instances = {
+local maps = {
 	[67]	= "Maraudon",
 	[68]	= "Maraudon",
 	[129]	= "The Nexus",
@@ -303,7 +303,6 @@ local instances = {
 	[711]	= "Vault of the Wardens",
 	[712]	= "Vault of the Wardens",
 	[713]	= "Eye of Azshara",
-	[718]	= "Dreadscar Rift",
 	[731]	= "Neltharion's Lair",
 	[732]	= "Assault on the Violet Hold",
 	[733]	= "Darkheart Thicket",
@@ -457,4 +456,4 @@ local instances = {
 	[1597]  = "Ny'alotha, the Waking City",
 };
 
-addonTbl.instances = instances;
+addonTbl.maps = maps;

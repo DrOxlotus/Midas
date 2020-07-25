@@ -17,8 +17,8 @@ addonTbl.GetCurrentMap = function()
 		end
 		
 		if addonTbl.isInInstance then
-			if not addonTbl.instances[addonTbl.uiMapID] then
-				addonTbl.instances[uiMapID] = uiMap.name;
+			if not addonTbl.maps[addonTbl.uiMapID] and if not addonTbl.ignoredMaps[addonTbl.uiMapID] then -- The map isn't in either maps table
+				addonTbl.maps[uiMapID] = uiMap.name;
 				print(L["ADDON_NAME"] .. L["ERR_MSG_MAP_NOT_SUPPORTED"] .. addonTbl.uiMapID);
 			end
 		end
