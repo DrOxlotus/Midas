@@ -12,6 +12,13 @@ addonTbl.SetLocale = function(locale)
 	addonTbl["locale"] = locale;
 	if locale == "enUS" then -- English (US)
 		addonTbl.L = L;
+		
+		-- BUTTON / FIELD DESCRIPTIONS
+		L["MAIL_CHARACTER_EDITBOX"]					= "The character you want Midas to send your excess gold to. Use ! to reset the character for this realm.";
+		L["NEW_SESSION_BUTTON"]						= "Starts a new session.\n|cffffffffWARNING|r: This is the equivalent of a fresh start! (Instance data remains intact.)";
+		L["RELOAD_LAST_SESSION_BUTTON"]				= "Pick up where you left off.";
+		L["SEND_MAIL_BUTTON"]						= "Send mail to your designated mail character.";
+		L["STOP_AND_START_BUTTON"]					= "Enables and disables the recorder.";
 	
 		-- COMMANDS
 		L["SLASH_CMD_1"]							= "/midas";
@@ -27,10 +34,6 @@ addonTbl.SetLocale = function(locale)
 		
 		-- GLOBAL STRINGS
 		L["KEYBIND_SETTING_OPEN_MENU"]				= "Open Menu";
-		L["BUTTON_RELOAD_LAST_SESSION"]				= "|cffffffffLoad Previous Session|r: Pick up where you left off.";
-		L["EDITBOX_MAIL_CHARACTER"]					= "|cffffffffMail Character|r: The character you want Midas to send your excess gold to. Use ! to reset the entire system for this realm.";
-		L["BUTTON_NEW_SESSION"]						= "|cffffffffNew Session|r: Start a new session. This WILL wipe your last session's data!";
-		L["BUTTON_START_AND_STOP"]					= "|cffffffffRecorder|r: Enables and disables the recorder.";
 		L["NO"]										= "No";
 		L["YES"]									= "Yes";
 		

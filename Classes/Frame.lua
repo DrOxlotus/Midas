@@ -6,7 +6,7 @@ local frame;
 local isFrameVisible;
 local L = addonTbl.L;
 
-local function ShowTooltip(self, text, state)
+addonTbl.ShowTooltip = function(self, text, state)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	
 	-- Recorder button
@@ -19,9 +19,9 @@ local function ShowTooltip(self, text, state)
 	end
 	
 	-- Mail Character EditBox
-	if addonTbl[addonTbl.realmName].mailCharacter ~= nil then
+	if addonTbl[addonTbl.realmName].mailCharacter ~= nil and (self:GetName() == "mailCharacterEditBox") then
 		GameTooltip:SetText(string.format(text .. "\n" .. L["INFO_MSG_CURRENT_MAIL_CHARACTER"], addonTbl[addonTbl.realmName].mailCharacter));
-	else
+	elseif addonTbl[addonTbl.realmName].mailCharacter == nil and (self:GetName() == "mailCharacterEditBox") then
 		GameTooltip:SetText(string.format(text .. "\n" .. L["INFO_MSG_MAIL_CHARACTER_NOT_SET"]));
 	end
 	
@@ -33,7 +33,7 @@ end
 	text:			Text to display when the tooltip is shown
 ]]
 
-local function HideTooltip(self)
+addonTbl.HideTooltip = function(self)
 	if GameTooltip:GetOwner() == self then
 		GameTooltip:Hide();
 	end
@@ -81,20 +81,20 @@ local function Show(frame)
 			-- Settings Frame X Button
 		frame.CloseButton:SetScript("OnClick", function(self) Hide(frame) end); -- When the player selects the X on the frame, hide it. Same behavior as typing the command consecutively.
 			-- Start and Stop Button
-		frame.stopAndStartButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_START_AND_STOP"], addonTbl.recorderState) end);
-		frame.stopAndStartButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.stopAndStartButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["STOP_AND_START_BUTTON"], addonTbl.recorderState) end);
+		frame.stopAndStartButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.stopAndStartButton:SetScript("OnClick", function(self) addonTbl.StartAndPause() end);
 			-- New Session Button
-		frame.newSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_NEW_SESSION"], nil) end);
-		frame.newSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.newSessionButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["NEW_SESSION_BUTTON"], nil) end);
+		frame.newSessionButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.newSessionButton:SetScript("OnClick", function(self) addonTbl.NewSession() end);
 			-- Reload Last Session Button
-		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) ShowTooltip(self, L["BUTTON_RELOAD_LAST_SESSION"], nil) end);
-		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["RELOAD_LAST_SESSION_BUTTON"], nil) end);
+		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.reloadLastSessionButton:SetScript("OnClick", function(self) addonTbl.LoadLastSession() end);
 			-- Mail Character Edit Box
-		frame.mailCharacterEditBox:SetScript("OnEnter", function(self) ShowTooltip(self, L["EDITBOX_MAIL_CHARACTER"], nil) end);
-		frame.mailCharacterEditBox:SetScript("OnLeave", function(self) HideTooltip(self) end);
+		frame.mailCharacterEditBox:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["MAIL_CHARACTER_EDITBOX"], nil) end);
+		frame.mailCharacterEditBox:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.mailCharacterEditBox:SetScript("OnEnterPressed", function(self) addonTbl.SetMailCharacter(frame.mailCharacterEditBox:GetText(), frame.mailCharacterEditBox) end);
 		
 		frame:Show();

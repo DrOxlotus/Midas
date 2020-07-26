@@ -62,6 +62,8 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 				if not MailFrameTab2.sendMailButton then -- Don't want the button to be created over and over
 					addonTbl.CreateWidget("Button", "sendMailButton", "", MailFrameTab2, "CENTER", MailFrameTab2, "RIGHT", 40, 400, 30, 30);
 					MailFrameTab2.sendMailButton:SetNormalTexture("Interface\\Minimap\\Tracking\\mailbox");
+					MailFrameTab2.sendMailButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["SEND_MAIL_BUTTON"], nil) end);
+					MailFrameTab2.sendMailButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 				else
 					MailFrameTab2.sendMailButton:Show();
 				end
