@@ -66,11 +66,15 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 						if addonTbl[addonTbl.realmName].mailCharacter ~= nil then
 							local money = addonTbl.moneyObtainedThisSession;
 							local moneyLength = string.len(money);
-							SendMailNameEditBox:SetText(addonTbl[addonTbl.realmName].mailCharacter);
-							SendMailSubjectEditBox:SetText(addon);
-							SendMailMoney.copper:SetText(string.sub(money, moneyLength-1, moneyLength-0))
-							SendMailMoney.silver:SetText(string.sub(money, moneyLength-3, moneyLength-2))
-							SendMailMoney.gold:SetText(string.sub(money, 0, moneyLength-4))
+							if money ~= 0 then
+								SendMailNameEditBox:SetText(addonTbl[addonTbl.realmName].mailCharacter);
+								SendMailSubjectEditBox:SetText(addon);
+								SendMailMoney.copper:SetText(string.sub(money, moneyLength-1, moneyLength-0))
+								SendMailMoney.silver:SetText(string.sub(money, moneyLength-3, moneyLength-2))
+								SendMailMoney.gold:SetText(string.sub(money, 0, moneyLength-4))
+							else
+								print(L["ADDON_NAME"] .. L["ERR_MSG_NO_MONEY_TO_SEND"]);
+							end
 						else
 							print(L["ADDON_NAME"] .. L["ERR_MSG_MAIL_CHARACTER_NOT_SET"]);
 						end

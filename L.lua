@@ -26,6 +26,7 @@ addonTbl.SetLocale = function(locale)
 		-- ERROR MESSAGES
 		L["ERR_MSG_MAIL_CHARACTER_NOT_SET"]			= "No mail character set for this realm!";
 		L["ERR_MSG_MAP_NOT_SUPPORTED"]				= "Map not found. The map was temporarily added to the instances table so data can log. Please report the following map ID: ";
+		L["ERR_MSG_NO_MONEY_TO_SEND"]				= "You must record your gold acquisition to use this feature!";
 		
 		-- GENERAL
 		L["ADDON_NAME"] 							= "|cffCCA6F0" .. addon .. "|r: ";
