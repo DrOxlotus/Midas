@@ -7,8 +7,10 @@ local L = addonTbl.L;
 -- ARRAYS (TABLES)
 
 -- BOOLEANS
+local isRecorderActiveStateOK								= false;
 local isInInstance 											= false;
 local isMidasLoaded 										= IsAddOnLoaded("Midas");
+addonTbl.isRecorderActiveStateOK							= isRecorderActiveStateOK;
 addonTbl.isInInstance 										= isInInstance;
 addonTbl.isMidasLoaded 										= isMidasLoaded;
 
