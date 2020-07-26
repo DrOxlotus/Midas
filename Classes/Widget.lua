@@ -18,7 +18,7 @@ addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, rel
 	elseif type == "EditBox" then
 		frameName[name] = CreateFrame("EditBox", name, parent, "InputBoxTemplate");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
-		frameName[name]:SetMaxLetters(12);
+		frameName[name]:SetMaxLetters(36);
 		frameName[name]:SetAutoFocus(false);
 		frameName[name]:SetFontObject("GameFontNormal");
 		frameName[name]:SetCursorPosition(3);
