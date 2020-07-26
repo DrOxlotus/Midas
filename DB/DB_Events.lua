@@ -6,6 +6,7 @@ local L = addonTbl.L;
 
 local events = {
 	"INSTANCE_GROUP_SIZE_CHANGED",
+	"MAIL_CLOSED",
 	"MAIL_INBOX_UPDATE",
 	"MERCHANT_CLOSED",
 	"MERCHANT_SHOW",

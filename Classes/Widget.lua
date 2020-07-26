@@ -6,7 +6,7 @@ local L = addonTbl.L;
 
 addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, relativePos, xOffset, yOffset, length, width)
 	if type == "Button" then
-		frameName[name] = CreateFrame("Button", name, parent, "UIPanelButtonTemplate");
+		frameName[name] = CreateFrame("Button", name, parent, "SecureHandlerClickTemplate"); --UIPanelButtonTemplate
 		frameName[name]:RegisterForClicks("AnyUp");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
 		frameName[name]:SetSize(length, width);

@@ -43,6 +43,32 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	end
 	-- Synopsis: Get the player's map when they change zones or enter instances.
 	
+	if event == "MAIL_CLOSED" then
+		if MailFrameTab2.sendMailButton then
+			MailFrameTab2.sendMailButton:Hide();
+		end
+	end
+	
+	if event == "MAIL_INBOX_UPDATE" then
+		if MailFrame:IsShown() then -- To avoid any possible nils
+			MailFrameTab1:SetScript("OnClick", function(self)
+				MailFrameTab_OnClick(self, 1);
+				if MailFrameTab2.sendMailButton then
+					MailFrameTab2.sendMailButton:Hide();
+				end
+			end);
+			MailFrameTab2:SetScript("OnClick", function(self)
+				MailFrameTab_OnClick(self, 2);
+				if not MailFrameTab2.sendMailButton then -- Don't want the button to be created over and over
+					addonTbl.CreateWidget("Button", "sendMailButton", "", MailFrameTab2, "CENTER", MailFrameTab2, "RIGHT", 40, 400, 30, 30);
+					MailFrameTab2.sendMailButton:SetNormalTexture("Interface\\Minimap\\Tracking\\mailbox");
+				else
+					MailFrameTab2.sendMailButton:Show();
+				end
+			end);
+		end
+	end
+	
 	if event == "PLAYER_LOGIN" then
 		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
 		
