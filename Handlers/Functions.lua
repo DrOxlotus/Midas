@@ -9,6 +9,7 @@ addonTbl.InitializeSavedVars = function()
 	-- SavedVars
 	if MidasMaps == nil then MidasMaps = {} end;
 	if MidasSettings == nil then MidasSettings = {} end;
+	if MidasPosition == nil then MidasPosition = {} end;
 	if MidasRealms == nil then MidasRealms = {} end;
 	if MidasRealms[addonTbl.realmName] == nil then MidasRealms[addonTbl.realmName] = {} end;
 	-- Character SavedVars

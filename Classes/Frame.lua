@@ -52,6 +52,22 @@ end
 	frame:			Name of the frame to hide
 ]]
 
+local function OnMouseDown(self)
+    if not self.isMoving then   
+        self:StartMoving();
+        self.isMoving = true;
+    end
+end
+
+local function OnMouseUp(self)
+    if self.isMoving then
+        self:StopMovingOrSizing();
+        self.isMoving = false;
+		
+		MidasPosition[1], MidasPosition[2], MidasPosition[3], MidasPosition[4], MidasPosition[5] = self:GetPoint(1);
+    end
+end
+
 local function Show(frame)
 	if isFrameVisible then
 		Hide(frame);
@@ -71,11 +87,16 @@ local function Show(frame)
 		if frame then
 			frame:SetMovable(true);
 			frame:EnableMouse(true);
-			frame:RegisterForDrag("LeftButton");
-			frame:SetScript("OnDragStart", frame.StartMoving);
-			frame:SetScript("OnDragStop", frame.StopMovingOrSizing);
-			frame:ClearAllPoints();
-			frame:SetPoint("CENTER", PlayerFrame, "CENTER", 50, -100);
+			frame:SetScript("OnMouseDown", OnMouseDown);
+			frame:SetScript("OnMouseUp", OnMouseUp);
+			
+			if MidasPosition then
+				frame:ClearAllPoints();
+				frame:SetPoint(MidasPosition[1], "WorldFrame", MidasPosition[3], MidasPosition[4], MidasPosition[5]);
+			else
+				frame:ClearAllPoints();
+				frame:SetPoint("CENTER");
+			end
 		end
 			
 		-- FRAME BEHAVIORS
