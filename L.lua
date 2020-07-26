@@ -42,7 +42,7 @@ addonTbl.SetLocale = function(locale)
 		L["YES"]									= "Yes";
 		
 		-- INFORMATIONAL MESSAGES
-		L["INFO_MSG_ACTIVE_RECORDER"]				= "Your recorder is active. Would you like to disable it for this instance?";
+		L["INFO_MSG_ACTIVE_RECORDER"]				= "Your recorder is active. Would you like to disable it?";
 		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";
 		L["INFO_MSG_DISABLED"]						= "|cffffffffCurrent State|r: Disabled";
 		L["INFO_MSG_ENABLED"]						= "|cffffffffCurrent State|r: Enabled";
