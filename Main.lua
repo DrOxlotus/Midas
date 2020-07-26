@@ -67,9 +67,11 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 							local moneyLength = string.len(money);
 							if money ~= 0 then
 								SendMailNameEditBox:SetText(addonTbl[addonTbl.realmName].mailCharacter);
-								SendMailSubjectEditBox:SetText(addon);
+								SendMailSubjectEditBox:SetText(addon); addonTbl.mailSubject = addon;
 								SendMailMoney.copper:SetText(string.sub(money, moneyLength-1, moneyLength-0));
-								SendMailMoney.silver:SetText(string.sub(money, moneyLength-3, moneyLength-2));
+								if money >= 100 then
+									SendMailMoney.silver:SetText(string.sub(money, moneyLength-3, moneyLength-2));
+								end
 								if money >= 10000 then
 									SendMailMoney.gold:SetText(string.sub(money, 0, moneyLength-4));
 								end
@@ -90,8 +92,12 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	end
 	
 	if event == "MAIL_SEND_SUCCESS" then
-		addonTbl.moneyObtainedThisSession = 0;
-		addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
+		if addonTbl.mailSubject == addon then
+			currentMoney = GetMoney() - (addonTbl.moneyObtainedThisSession + 30); addonTbl.currentMoney = currentMoney; -- The 30 is the cost for sending the mail
+			addonTbl.moneyObtainedThisSession = 0;
+			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(0));
+		end
+		addonTbl.mailSubject = ""; 
 	end
 	
 	if event == "PLAYER_LOGIN" then

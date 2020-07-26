@@ -20,8 +20,10 @@ addonTbl.moneyObtainedThisSession							= moneyObtainedThisSession;
 
 -- STRINGS
 local currentMap 											= "";
+local mailSubject											= "";
 local playerName											= UnitName(L["PLAYER"]);
 local _, realmName											= UnitFullName(L["PLAYER"]);
 addonTbl.currentMap 										= currentMap;
+addonTbl.mailSubject										= mailSubject;
 addonTbl.playerName											= playerName;
 addonTbl.realmName											= realmName;
