@@ -5,8 +5,9 @@ local addon, addonTbl = ...;
 local L = addonTbl.L;
 
 local ignoredMaps = {
-	[717]	= "Dreadscar Rift",
-	[718]	= "Dreadscar Rift",
+	[717]	= "Dreadscar Rift",			-- Warlock Class Hall
+	[718]	= "Dreadscar Rift",			-- Warlock Class Hall Unlock
+	[773]	= "Tol Barad",				-- Destruction Warlock Artifact
 };
 
 addonTbl.ignoredMaps = ignoredMaps;
