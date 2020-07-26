@@ -18,7 +18,7 @@ addonTbl.GetCurrentMap = function()
 		end
 		
 		if addonTbl.isInInstance then
-			if addonTbl.activeRecorderReminder and addonTbl.recorderState == 1 and not isRecorderActiveStateOK then
+			if addonTbl.activeRecorderReminder and addonTbl.recorderState == 1 and isRecorderActiveStateOK == false then
 				StaticPopupDialogs["Midas_ActiveRecorderReminder"] = {
 					text = L["INFO_MSG_ACTIVE_RECORDER"],
 					button1 = L["YES"],
