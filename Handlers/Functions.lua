@@ -47,7 +47,10 @@ addonTbl.NewSession = function()
 end
 
 addonTbl.LoadLastSession = function()
-	if MidasCharacterHistory.moneyObtainedLastSession == 0 or MidasCharacterHistory.moneyObtainedLastSession == nil then return end;
+	if MidasCharacterHistory.moneyObtainedLastSession == 0 or MidasCharacterHistory.moneyObtainedLastSession == nil then
+		print(L["ADDON_NAME"] .. L["ERR_MSG_NO_LAST_SESSION"]);
+		return;
+	end
 	recorderState = 1; addonTbl.recorderState = recorderState;
 	addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
 	addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
