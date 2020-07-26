@@ -6,11 +6,11 @@ local L = addonTbl.L;
 
 addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, relativePos, xOffset, yOffset, length, width)
 	if type == "Button" then
-		frameName[name] = CreateFrame("Button", name, parent, "SecureHandlerClickTemplate"); --UIPanelButtonTemplate
+		frameName[name] = CreateFrame("Button", name, parent, "SecureHandlerClickTemplate");
 		frameName[name]:RegisterForClicks("AnyUp");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
 		frameName[name]:SetSize(length, width);
-		frameName[name]:SetText(text);
+		frameName[name]:SetNormalTexture(text);
 	elseif type == "CheckButton" then
 		frameName[name] = CreateFrame("CheckButton", name, parent, "UICheckButtonTemplate");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);

@@ -60,8 +60,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 			MailFrameTab2:SetScript("OnClick", function(self)
 				MailFrameTab_OnClick(self, 2);
 				if not MailFrameTab2.sendMailButton then -- Don't want the button to be created over and over
-					addonTbl.CreateWidget("Button", "sendMailButton", "", MailFrameTab2, "CENTER", MailFrameTab2, "RIGHT", 40, 400, 30, 30);
-					MailFrameTab2.sendMailButton:SetNormalTexture("Interface\\Minimap\\Tracking\\mailbox");
+					addonTbl.CreateWidget("Button", "sendMailButton", "Interface\\Minimap\\Tracking\\mailbox", MailFrameTab2, "CENTER", MailFrameTab2, "RIGHT", 40, 400, 30, 30);
 					MailFrameTab2.sendMailButton:SetScript("OnClick", function(self)
 						if addonTbl[addonTbl.realmName].mailCharacter ~= nil then
 							local money = addonTbl.moneyObtainedThisSession;
