@@ -90,7 +90,7 @@ local function Show(frame)
 			frame:SetScript("OnMouseDown", OnMouseDown);
 			frame:SetScript("OnMouseUp", OnMouseUp);
 			
-			if MidasPosition then
+			if MidasPosition[1] then
 				frame:ClearAllPoints();
 				frame:SetPoint(MidasPosition[1], "WorldFrame", MidasPosition[3], MidasPosition[4], MidasPosition[5]);
 			else
