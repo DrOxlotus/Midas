@@ -63,6 +63,7 @@ local function Show(frame)
 			addonTbl.CreateWidget("Button", "stopAndStartButton", "Interface\\Icons\\inv_misc_questionmark", frame, "CENTER", frame, "CENTER", -110, 5, 30, 30);
 			addonTbl.CreateWidget("Button", "newSessionButton", "Interface\\Icons\\inv_misc_questionmark", frame, "CENTER", frame, "CENTER", -70, 5, 30, 30);
 			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "Interface\\Icons\\inv_misc_questionmark", frame, "CENTER", frame, "CENTER", -30, 5, 30, 30);
+			addonTbl.CreateWidget("CheckButton", "activeRecorderReminderCheckButton", "", frame, "CENTER", frame, "CENTER", -110, -30, nil, nil);
 			addonTbl.CreateWidget("EditBox", "mailCharacterEditBox", "", frame, "CENTER", frame, "CENTER", 75, 5, 120, 30);
 			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(GetMoney()), frame, "CENTER", frame, "CENTER", 60, -30, nil, nil);
 		end
@@ -92,6 +93,25 @@ local function Show(frame)
 		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["RELOAD_LAST_SESSION_BUTTON"], nil) end);
 		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.reloadLastSessionButton:SetScript("OnClick", function(self) addonTbl.LoadLastSession() end);
+			-- Active Recorder Reminder CheckButton
+		frame.activeRecorderReminderCheckButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["ACTIVE_RECORDER_REMINDER_CHECKBUTTON"], nil) end);
+		frame.activeRecorderReminderCheckButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
+		if MidasSettings["activeRecorderReminder"] then
+			frame.activeRecorderReminderCheckButton:SetChecked(true);
+			addonTbl.activeRecorderReminder = true;
+		else
+			frame.activeRecorderReminderCheckButton:SetChecked(false);
+			addonTbl.activeRecorderReminder = false;
+		end
+		frame.activeRecorderReminderCheckButton:SetScript("OnClick", function(self)
+			if self:GetChecked() then
+				addonTbl.activeRecorderReminder = true;
+				MidasSettings.activeRecorderReminder = true;
+			else
+				addonTbl.activeRecorderReminder = false;
+				MidasSettings.activeRecorderReminder = false;
+			end
+		end);
 			-- Mail Character Edit Box
 		frame.mailCharacterEditBox:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["MAIL_CHARACTER_EDITBOX"], nil) end);
 		frame.mailCharacterEditBox:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);

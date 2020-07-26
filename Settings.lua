@@ -9,6 +9,10 @@ local function GetOptions(arg)
 		addonTbl[arg] = MidasSettings[arg];
 		return addonTbl[arg];
 	else
+		if arg == "activeRecorderReminder" then
+			MidasSettings[arg] = false; addonTbl[arg] = MidasSettings[arg];
+			return addonTbl[arg];
+		end
 		if arg == "locale" then
 			MidasSettings[arg] = "enUS"; addonTbl[arg] = MidasSettings[arg];
 			return addonTbl[arg];
@@ -20,7 +24,7 @@ end
 
 addonTbl.LoadSettings = function(doNotOpen)
 	if doNotOpen then
-		MidasSettings = {locale = GetOptions("locale")};
+		MidasSettings = {activeRecorderReminder = GetOptions("activeRecorderReminder"), locale = GetOptions("locale")};
 	else
 		addonTbl.CreateFrame("MidasMainFrame", 275, 100);
 	end

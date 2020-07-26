@@ -2,6 +2,7 @@
 local addon, addonTbl = ...;
 
 -- Module-Local Variables
+local isRecorderActiveStateOK;
 local L = addonTbl.L;
 
 addonTbl.GetCurrentMap = function()
@@ -17,6 +18,25 @@ addonTbl.GetCurrentMap = function()
 		end
 		
 		if addonTbl.isInInstance then
+			if addonTbl.activeRecorderReminder and addonTbl.recorderState == 1 and not isRecorderActiveStateOK then
+				StaticPopupDialogs["Midas_ActiveRecorderReminder"] = {
+					text = L["INFO_MSG_ACTIVE_RECORDER"],
+					button1 = L["YES"],
+					button2 = L["NO"],
+					OnAccept = function()
+						addonTbl.StartAndPause();
+					end,
+					OnDecline = function()
+						isRecorderActiveStateOK = true;
+					end,
+					timeout = 0,
+					whileDead = true,
+					hideOnEscape = true,
+					preferredIndex = 3,
+				};
+				
+				StaticPopup_Show("Midas_ActiveRecorderReminder");
+			end
 			if not addonTbl.maps[addonTbl.uiMapID] and not addonTbl.ignoredMaps[addonTbl.uiMapID] then -- The map isn't in either maps table
 				addonTbl.maps[uiMapID] = uiMap.name;
 				print(L["ADDON_NAME"] .. L["ERR_MSG_MAP_NOT_SUPPORTED"] .. addonTbl.uiMapID .. " (" .. uiMap.name .. ", " .. UnitClass("player") .. ", " .. UnitLevel("player") .. ")");

@@ -56,6 +56,10 @@ addonTbl.LoadLastSession = function()
 	addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
 end
 
+--[[addonTbl.LoadSetting = function(setting)
+	
+end]]
+
 addonTbl.SetMailCharacter = function(mailCharacter, editBox)
 	if mailCharacter == "" then return end; -- To prevent setting the character to blank.
 	if mailCharacter == "!" then

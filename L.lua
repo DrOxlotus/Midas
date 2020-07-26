@@ -14,6 +14,7 @@ addonTbl.SetLocale = function(locale)
 		addonTbl.L = L;
 		
 		-- BUTTON / FIELD DESCRIPTIONS
+		L["ACTIVE_RECORDER_REMINDER_CHECKBUTTON"]	= "When entering instances, tell me if my recorder is active.";
 		L["MAIL_CHARACTER_EDITBOX"]					= "The character you want Midas to send your excess gold to. Use ! to reset the character for this realm.";
 		L["NEW_SESSION_BUTTON"]						= "Starts a new session.\n|cffffffffWARNING|r: This is the equivalent of a fresh start! (Instance data remains intact.)";
 		L["RELOAD_LAST_SESSION_BUTTON"]				= "Pick up where you left off.";
@@ -41,6 +42,7 @@ addonTbl.SetLocale = function(locale)
 		L["YES"]									= "Yes";
 		
 		-- INFORMATIONAL MESSAGES
+		L["INFO_MSG_ACTIVE_RECORDER"]				= "Your recorder is active. Would you like to disable it for this instance?";
 		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";
 		L["INFO_MSG_DISABLED"]						= "|cffffffffCurrent State|r: Disabled";
 		L["INFO_MSG_ENABLED"]						= "|cffffffffCurrent State|r: Enabled";
@@ -51,8 +53,6 @@ addonTbl.SetLocale = function(locale)
 		L["INFO_MSG_MAIL_CHARACTER_NOT_SET"]		= "|cffffffffNo mail character set for this realm|r.";
 		
 		-- MODE NAMES
-		
-		-- DESCRIPTIONS
 		
 		-- OBJECT TYPES
 		L["PLAYER"]									= "Player";
