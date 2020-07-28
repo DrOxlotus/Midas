@@ -51,6 +51,7 @@ addonTbl.SetLocale = function(locale)
 		L["INFO_MSG_MAIL_CHARACTER_SET"]			= "Successfully set your mail character to %s!";
 		L["INFO_MSG_MAIL_CHARACTER_RESET"]			= "Successfully reset your mail character to factory default.";
 		L["INFO_MSG_MAIL_CHARACTER_NOT_SET"]		= "|cffffffffNo mail character set for this realm|r.";
+		L["INFO_MSG_PREVIOUS_SESSION_DETECTED"]		= "You have a previous session. Would you like to load that instead?";
 		
 		-- MODE NAMES
 		

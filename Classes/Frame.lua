@@ -76,9 +76,9 @@ local function Show(frame)
 		-- WIDGETS
 		if not frame["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
 			addonTbl.CreateWidget("FontString", "title", L["RELEASE"] .. L["ADDON_NAME_SETTINGS"], frame, "CENTER", frame.TitleBg, "CENTER", 5, 0, nil, nil);
-			addonTbl.CreateWidget("Button", "stopAndStartButton", "Interface\\Icons\\inv_misc_questionmark", frame, "CENTER", frame, "CENTER", -110, 5, 30, 30);
-			addonTbl.CreateWidget("Button", "newSessionButton", "Interface\\Icons\\inv_misc_questionmark", frame, "CENTER", frame, "CENTER", -70, 5, 30, 30);
-			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "Interface\\Icons\\inv_misc_questionmark", frame, "CENTER", frame, "CENTER", -30, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "stopAndStartButton", "Interface\\Icons\\inv_misc_pocketwatch_02", frame, "CENTER", frame, "CENTER", -110, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "newSessionButton", "Interface\\Icons\\spell_chargepositive", frame, "CENTER", frame, "CENTER", -70, 5, 30, 30);
+			addonTbl.CreateWidget("Button", "reloadLastSessionButton", "Interface\\Icons\\inv_letter_18", frame, "CENTER", frame, "CENTER", -30, 5, 30, 30);
 			addonTbl.CreateWidget("CheckButton", "activeRecorderReminderCheckButton", "", frame, "CENTER", frame, "CENTER", -110, -30, nil, nil);
 			addonTbl.CreateWidget("EditBox", "mailCharacterEditBox", "", frame, "CENTER", frame, "CENTER", 75, 5, 120, 30);
 			addonTbl.CreateWidget("FontString", "money", GetCoinTextureString(GetMoney()), frame, "CENTER", frame, "CENTER", 60, -30, nil, nil);
