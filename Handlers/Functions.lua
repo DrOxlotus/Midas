@@ -18,7 +18,7 @@ addonTbl.InitializeSavedVars = function()
 end
 
 addonTbl.StartAndPause = function()
-	if MidasCharacterHistory.moneyObtainedLastSession ~= 0 then -- A previous session was detected
+	if MidasCharacterHistory.moneyObtainedLastSession ~= 0 and MidasCharacterHistory.moneyObtainedLastSession ~= nil then -- A previous session was detected
 		StaticPopupDialogs["Midas_Previous_Session_Detected"] = {
 			text = L["INFO_MSG_PREVIOUS_SESSION_DETECTED"],
 			button1 = L["YES"],
