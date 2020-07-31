@@ -10,7 +10,6 @@ local addon, addonTbl = ...;
 local eventFrame = CreateFrame("Frame");
 local isPlayerInCombat;
 local L = addonTbl.L;
-local currentMoney = 0;
 
 for _, event in ipairs(addonTbl.events) do
 	eventFrame:RegisterEvent(event);
@@ -93,9 +92,9 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	
 	if event == "MAIL_SEND_SUCCESS" then
 		if addonTbl.mailSubject == addon then
-			currentMoney = GetMoney() - (addonTbl.moneyObtainedThisSession + 30); addonTbl.currentMoney = currentMoney; -- The 30 is the cost for sending the mail
+			addonTbl.currentMoney = GetMoney() - (addonTbl.moneyObtainedThisSession + 30); -- The 30 is the cost for sending the mail
+			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.currentMoney));
 			addonTbl.moneyObtainedThisSession = 0;
-			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(0));
 			addonTbl.recorderState = 0;
 		end
 		addonTbl.mailSubject = ""; 
@@ -110,7 +109,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		addonTbl.LoadSettings(true);
 		addonTbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = addonTbl["locale"];
 		addonTbl.GetCurrentMap();
-		currentMoney = GetMoney(); addonTbl.currentMoney = currentMoney;
+		addonTbl.currentMoney = GetMoney(); print(addonTbl.currentMoney);
 		
 		addonTbl[addonTbl.realmName] = MidasRealms[addonTbl.realmName];
 	end
@@ -118,17 +117,17 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	
 	if event == "PLAYER_LOGOUT" then
 		if addonTbl.moneyObtainedThisSession > 0 then MidasCharacterHistory.moneyObtainedLastSession = addonTbl.moneyObtainedThisSession end;
-		MidasCharacterHistory.playerMoneyLastSession = currentMoney;
+		MidasCharacterHistory.playerMoneyLastSession = addonTbl.currentMoney;
 	end
 	-- Synopsis: Writes data to the cache.
 	
 	if event == "PLAYER_MONEY" then
 		if addonTbl.recorderState == 1 then
-			if currentMoney > GetMoney() then return end; -- The event fired because the player lost money.
-			local rawMoneyObtained = GetMoney() - currentMoney;
+			if addonTbl.currentMoney > GetMoney() then return end; -- The event fired because the player lost money.
+			local rawMoneyObtained = GetMoney() - addonTbl.currentMoney;
 			addonTbl.moneyObtainedThisSession = addonTbl.moneyObtainedThisSession + rawMoneyObtained;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
-			currentMoney = GetMoney(); addonTbl.currentMoney = currentMoney;
+			addonTbl.currentMoney = GetMoney();
 			
 			if addonTbl.isInInstance then
 				if not MidasCharacterHistory["Instances"][addonTbl.currentMap] then MidasCharacterHistory["Instances"][addonTbl.currentMap] = 0 end; -- To prevent arithmetic nil errors on the next step.

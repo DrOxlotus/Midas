@@ -17,7 +17,9 @@ addonTbl.isMidasLoaded 										= isMidasLoaded;
 addonTbl.recorderState										= recorderState;
 
 -- INTEGERS
+local currentMoney											= 0;
 local moneyObtainedThisSession								= 0;
+addonTbl.currentMoney										= currentMoney;
 addonTbl.moneyObtainedThisSession							= moneyObtainedThisSession;
 
 -- STRINGS
