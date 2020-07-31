@@ -96,6 +96,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 			currentMoney = GetMoney() - (addonTbl.moneyObtainedThisSession + 30); addonTbl.currentMoney = currentMoney; -- The 30 is the cost for sending the mail
 			addonTbl.moneyObtainedThisSession = 0;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(0));
+			addonTbl.recorderState = 0;
 		end
 		addonTbl.mailSubject = ""; 
 	end
