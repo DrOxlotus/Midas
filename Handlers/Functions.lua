@@ -3,7 +3,6 @@ local addon, addonTbl = ...;
 
 -- Module-Local Variables
 local L = addonTbl.L;
-local recorderState = 0;
 
 addonTbl.InitializeSavedVars = function()
 	-- SavedVars
@@ -27,7 +26,7 @@ addonTbl.StartAndPause = function()
 				addonTbl.LoadLastSession();
 			end,
 			OnCancel = function()
-				recorderState = 1; addonTbl.recorderState = recorderState;
+				addonTbl.recorderState = 1;
 				addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(0));
 			end,
 			timeout = 0,
@@ -38,11 +37,11 @@ addonTbl.StartAndPause = function()
 	
 		StaticPopup_Show("Midas_Previous_Session_Detected");
 	else
-		if recorderState == 1 then -- Recorder is active so pause it.
-			recorderState = 0;
+		if addonTbl.recorderState == 1 then -- Recorder is active so pause it.
+			addonTbl.recorderState = 0;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(GetMoney()));
 		else -- Recorder is paused so start it.
-			recorderState = 1;
+			addonTbl.recorderState = 1;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
 		end
 		addonTbl.recorderState = recorderState;
@@ -56,7 +55,7 @@ addonTbl.NewSession = function()
 		button2 = L["NO"],
 		OnAccept = function()
 			MidasCharacterHistory.moneyObtainedLastSession = 0; addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
-			recorderState = 0; addonTbl.recorderState = recorderState;
+			adonnTbl.recorderState = 0;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(GetMoney()));
 		end,
 		timeout = 0,
@@ -73,7 +72,7 @@ addonTbl.LoadLastSession = function()
 		print(L["ADDON_NAME"] .. L["ERR_MSG_NO_LAST_SESSION"]);
 		return;
 	end
-	recorderState = 1; addonTbl.recorderState = recorderState;
+	addonTbl.recorderState = 1;
 	addonTbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
 	addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
 end

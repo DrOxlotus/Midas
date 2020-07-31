@@ -10,9 +10,11 @@ local L = addonTbl.L;
 local isRecorderActiveStateOK								= false;
 local isInInstance 											= false;
 local isMidasLoaded 										= IsAddOnLoaded("Midas");
+local recorderState											= 0;
 addonTbl.isRecorderActiveStateOK							= isRecorderActiveStateOK;
 addonTbl.isInInstance 										= isInInstance;
 addonTbl.isMidasLoaded 										= isMidasLoaded;
+addonTbl.recorderState										= recorderState;
 
 -- INTEGERS
 local moneyObtainedThisSession								= 0;
