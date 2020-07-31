@@ -109,7 +109,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		addonTbl.LoadSettings(true);
 		addonTbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = addonTbl["locale"];
 		addonTbl.GetCurrentMap();
-		addonTbl.currentMoney = GetMoney(); print(addonTbl.currentMoney);
+		addonTbl.currentMoney = GetMoney();
 		
 		addonTbl[addonTbl.realmName] = MidasRealms[addonTbl.realmName];
 	end
@@ -122,8 +122,8 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	-- Synopsis: Writes data to the cache.
 	
 	if event == "PLAYER_MONEY" then
-		if addonTbl.recorderState == 1 then
-			if addonTbl.currentMoney > GetMoney() then return end; -- The event fired because the player lost money.
+		if addonTbl.currentMoney > GetMoney() then return end; -- The event fired because the player lost money.
+		if addonTbl.recorderState and addonTbl.recorderState ~= 0 then
 			local rawMoneyObtained = GetMoney() - addonTbl.currentMoney;
 			addonTbl.moneyObtainedThisSession = addonTbl.moneyObtainedThisSession + rawMoneyObtained;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));

@@ -38,11 +38,11 @@ addonTbl.StartAndPause = function()
 		StaticPopup_Show("Midas_Previous_Session_Detected");
 	else
 		if addonTbl.recorderState == 1 then -- Recorder is active so pause it.
-			print("A");
 			addonTbl.recorderState = 0;
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(GetMoney()));
 		else -- Recorder is paused so start it.
 			addonTbl.recorderState = 1;
+			addonTbl.currentMoney = GetMoney(); -- This value needs to be updated to only account for the money obtained while the recorder is active.
 			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
 		end
 	end
