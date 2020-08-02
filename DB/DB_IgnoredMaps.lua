@@ -11,6 +11,7 @@ local ignoredMaps = {
 	[773]	= "Tol Barad",				-- Destruction Warlock Artifact
 	[774]	= "Baradin Hold",			-- Destruction Warlock Artifact
 	[1538]	= "Blackwing Descent",		-- BfA Legendary Cloak Scenario
+	[1539]	= "Blackwing Descent",		-- BfA Legendary Cloak Scenario
 	[1540]	= "Halls of Origination",	-- BfA Legendary Cloak Scenario
 	[1541]	= "Halls of Origination",	-- BfA Legendary Cloak Scenario
 	[1544]	= "Mogu'Shan Palace",		-- BfA Legendary Cloak Scenario
