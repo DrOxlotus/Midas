@@ -40,7 +40,7 @@ addonTbl.GetCurrentMap = function()
 			end
 			if not addonTbl.maps[addonTbl.uiMapID] and not addonTbl.ignoredMaps[addonTbl.uiMapID] then -- The map isn't in either maps table
 				addonTbl.maps[uiMapID] = uiMap.name;
-				print(L["ADDON_NAME"] .. L["ERR_MSG_MAP_NOT_SUPPORTED"] .. addonTbl.uiMapID .. " (" .. uiMap.name .. ", " .. UnitClass("player") .. ", " .. UnitLevel("player") .. ")");
+				print(L["ADDON_NAME"] .. L["ERR_MSG_MAP_NOT_SUPPORTED"] .. addonTbl.uiMapID .. " (" .. uiMap.name .. ", " .. UnitClass("player") .. ", " .. UnitLevel("player") .. ") - Please report in the Midas section here: https://discord.gg/pJAJxs");
 			end
 		else
 			addonTbl.isRecorderActiveStateOK = false;
