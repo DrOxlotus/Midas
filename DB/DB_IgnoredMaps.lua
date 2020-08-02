@@ -10,6 +10,7 @@ local ignoredMaps = {
 	[718]	= "Dreadscar Rift",			-- Warlock Class Hall Unlock
 	[773]	= "Tol Barad",				-- Destruction Warlock Artifact
 	[774]	= "Baradin Hold",			-- Destruction Warlock Artifact
+	[1469]	= "Vision of Orgrimmar",	-- Horrific Visions
 	[1538]	= "Blackwing Descent",		-- BfA Legendary Cloak Scenario
 	[1539]	= "Blackwing Descent",		-- BfA Legendary Cloak Scenario
 	[1540]	= "Halls of Origination",	-- BfA Legendary Cloak Scenario
@@ -18,6 +19,7 @@ local ignoredMaps = {
 	[1544]	= "Mogu'Shan Palace",		-- BfA Legendary Cloak Scenario
 	[1545]	= "Mogu'Shan Palace",		-- BfA Legendary Cloak Scenario
 	[1549]	= "Mogu'Shan Palace",		-- BfA Legendary Cloak Scenario
+	[1604]	= "Chamber of Heart",		-- Horrific Visions
 };
 
 addonTbl.ignoredMaps = ignoredMaps;
