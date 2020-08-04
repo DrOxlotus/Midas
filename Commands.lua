@@ -10,5 +10,7 @@ SlashCmdList["Midas"] = function(cmd, editbox)
 
 	if not cmd or cmd == "" then
 		addonTbl.LoadSettings(false);
+	elseif cmd == L["CMD_DISCORD"] then
+		print(L["ADDON_NAME"] .. "https://discord.gg/7Ve8JQv");
 	end
 end

@@ -23,6 +23,7 @@ addonTbl.SetLocale = function(locale)
 	
 		-- COMMANDS
 		L["SLASH_CMD_1"]							= "/midas";
+		L["CMD_DISCORD"]							= "discord";
 		
 		-- ERROR MESSAGES
 		L["ERR_MSG_MAIL_CHARACTER_NOT_SET"]			= "No mail character set for this realm!";
