@@ -13,53 +13,36 @@ addonTbl.SetLocale = function(locale)
 	if locale == "enUS" then -- English (US)
 		addonTbl.L = L;
 		
-		-- BUTTON / FIELD DESCRIPTIONS
-		L["ACTIVE_RECORDER_REMINDER_CHECKBUTTON"]	= "When entering instances, tell me if my recorder is active.";
-		L["MAIL_CHARACTER_EDITBOX"]					= "The character you want Midas to send your excess gold to. Use ! to reset the character for this realm.";
-		L["NEW_SESSION_BUTTON"]						= "Starts a new session.\n|cffffffffWARNING|r: This is the equivalent of a fresh start! (Instance data remains intact.)";
-		L["RELOAD_LAST_SESSION_BUTTON"]				= "Pick up where you left off.";
-		L["SEND_MAIL_BUTTON"]						= "Send mail to your designated mail character.";
-		L["STOP_AND_START_BUTTON"]					= "Enables and disables the recorder.";
-	
-		-- COMMANDS
-		L["SLASH_CMD_1"]							= "/midas";
-		L["CMD_DISCORD"]							= "discord";
-		
-		-- ERROR MESSAGES
-		L["ERR_MSG_MAIL_CHARACTER_NOT_SET"]			= "No mail character set for this realm!";
-		L["ERR_MSG_MAP_NOT_SUPPORTED"]				= "Map not found. The map was temporarily added to the instances table so data can log. Please report the following map ID: ";
-		L["ERR_MSG_NO_LAST_SESSION"]				= "No last session found.";
-		L["ERR_MSG_NO_MONEY_TO_SEND"]				= "You must record your gold acquisition to use this feature!";
-		
-		-- GENERAL
+		L["ACTIVE_RECORDER"]						= "Your recorder is active. Would you like to disable it?";
+		L["ACTIVE_RECORDER_REMINDER"]				= "When entering instances, tell me if my recorder is active.";
+		L["ADDON_LOAD_SUCCESSFUL"]					= "Loaded successfully!";
 		L["ADDON_NAME"] 							= "|cffCCA6F0" .. addon .. "|r: ";
 		L["ADDON_NAME_SETTINGS"] 					= "|cffCCA6F0" .. addon .. "|r";
-		L["RELEASE"] 								= "[" .. GetAddOnMetadata(addon, "Version") .. "] ";
+		L["COMMAND_DISCORD"]						= "discord";
+		L["COMMAND_HISTORY"]						= "history";
+		L["CURRENT"]								= "|cffffffffCurrent|r: ";
 		L["DATE"]									= date("%m/%d/%Y");
-		
-		-- GLOBAL STRINGS
-		L["KEYBIND_SETTING_OPEN_MENU"]				= "Open Menu";
+		L["DISABLED"]								= "|cffffffffCurrent State|r: Disabled";
+		L["ENABLED"]								= "|cffffffffCurrent State|r: Enabled";
+		L["MAIL_CHARACTER_EDITBOX"]					= "The character you want Midas to send your excess gold to. Use ! to reset the character for this realm.";
+		L["MAIL_CHARACTER_NOT_FOUND"]				= "|cffffffffNo mail character found for this realm|r.";
+		L["MAIL_CHARACTER_RESET"]					= "Successfully reset your mail character to factory default.";
+		L["MAIL_CHARACTER_SET"]						= "Successfully set your mail character to ";
+		L["MAP_NOT_SUPPORTED"]						= "Map not found. The map was temporarily added to the instances table so data can log. Please report the following map ID: ";
+		L["NEW_SESSION"]							= "Starts a new session.\n|cffffffffWARNING|r: This is the equivalent of a fresh start! (Instance data remains intact.)";
+		L["NEW_SESSION_CONFIRM"]					= "Are you sure you want to start a new session?";
 		L["NO"]										= "No";
-		L["YES"]									= "Yes";
-		
-		-- INFORMATIONAL MESSAGES
-		L["INFO_MSG_ACTIVE_RECORDER"]				= "Your recorder is active. Would you like to disable it?";
-		L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]			= "Loaded successfully!";
-		L["INFO_MSG_DISABLED"]						= "|cffffffffCurrent State|r: Disabled";
-		L["INFO_MSG_ENABLED"]						= "|cffffffffCurrent State|r: Enabled";
-		L["INFO_MSG_CURRENT_MAIL_CHARACTER"]		= "|cffffffffCurrent|r: %s";
-		L["INFO_MSG_NEW_SESSION"]					= "Are you sure you want to start a new session?";
-		L["INFO_MSG_MAIL_CHARACTER_SET"]			= "Successfully set your mail character to %s!";
-		L["INFO_MSG_MAIL_CHARACTER_RESET"]			= "Successfully reset your mail character to factory default.";
-		L["INFO_MSG_MAIL_CHARACTER_NOT_SET"]		= "|cffffffffNo mail character set for this realm|r.";
-		L["INFO_MSG_PREVIOUS_SESSION_DETECTED"]		= "You have a previous session. Would you like to load that instead?";
-		
-		-- MODE NAMES
-		
-		-- OBJECT TYPES
+		L["NO_LAST_SESSION"]						= "No last session found.";
+		L["NO_MONEY_TO_SEND"]						= "You must loot money while the recorder is active to use this feature!";
+		L["OPEN_MENU"]								= "Open Menu";
 		L["PLAYER"]									= "Player";
-		
-		-- OTHER
+		L["PREVIOUS_SESSION_DETECTED"]				= "You have a previous session. Would you like to load that instead?";
+		L["RELEASE"] 								= "[" .. GetAddOnMetadata(addon, "Version") .. "] ";
+		L["RELOAD_LAST_SESSION"]					= "Pick up where you left off.";
+		L["SEND_MAIL"]								= "Send mail to your designated mail character.";
+		L["SLASH_COMMAND_MIDAS1"]					= "/midas";
+		L["STOP_AND_START"]							= "Enables and disables the recorder.";
+		L["YES"]									= "Yes";
 	end
 end
 

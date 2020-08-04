@@ -1,7 +1,5 @@
--- Namespace Variables
+-- Variables
 local addon, addonTbl = ...;
-
--- Module-Local Variables
 local frame;
 local isFrameVisible;
 local L = addonTbl.L;
@@ -11,18 +9,18 @@ addonTbl.ShowTooltip = function(self, text, state)
 	
 	-- Recorder button
 	if state == 1 then
-		GameTooltip:SetText(text .. "\n" .. L["INFO_MSG_ENABLED"]);
+		GameTooltip:SetText(text .. "\n" .. L["ENABLED"]);
 	elseif state == 0 then
-		GameTooltip:SetText(text .. "\n" .. L["INFO_MSG_DISABLED"]);
+		GameTooltip:SetText(text .. "\n" .. L["DISABLED"]);
 	else
 		GameTooltip:SetText(text);
 	end
 	
 	-- Mail Character EditBox
 	if addonTbl[addonTbl.realmName].mailCharacter ~= nil and (self:GetName() == "mailCharacterEditBox") then
-		GameTooltip:SetText(string.format(text .. "\n" .. L["INFO_MSG_CURRENT_MAIL_CHARACTER"], addonTbl[addonTbl.realmName].mailCharacter));
+		GameTooltip:SetText(text .. "\n" .. L["CURRENT"] .. addonTbl[addonTbl.realmName].mailCharacter);
 	elseif addonTbl[addonTbl.realmName].mailCharacter == nil and (self:GetName() == "mailCharacterEditBox") then
-		GameTooltip:SetText(string.format(text .. "\n" .. L["INFO_MSG_MAIL_CHARACTER_NOT_SET"]));
+		GameTooltip:SetText(text .. "\n" .. L["MAIL_CHARACTER_NOT_FOUND"]);
 	end
 	
 	GameTooltip:Show();
@@ -73,6 +71,7 @@ local function Show(frame)
 		Hide(frame);
 	else
 		isFrameVisible = true;
+		
 		-- WIDGETS
 		if not frame["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
 			addonTbl.CreateWidget("FontString", "title", L["RELEASE"] .. L["ADDON_NAME_SETTINGS"], frame, "CENTER", frame.TitleBg, "CENTER", 5, 0, nil, nil);
@@ -103,19 +102,19 @@ local function Show(frame)
 			-- Settings Frame X Button
 		frame.CloseButton:SetScript("OnClick", function(self) Hide(frame) end); -- When the player selects the X on the frame, hide it. Same behavior as typing the command consecutively.
 			-- Start and Stop Button
-		frame.stopAndStartButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["STOP_AND_START_BUTTON"], addonTbl.recorderState) end);
+		frame.stopAndStartButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["STOP_AND_START"], addonTbl.recorderState) end);
 		frame.stopAndStartButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.stopAndStartButton:SetScript("OnClick", function(self) addonTbl.StartAndPause() end);
 			-- New Session Button
-		frame.newSessionButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["NEW_SESSION_BUTTON"], nil) end);
+		frame.newSessionButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["NEW_SESSION"], nil) end);
 		frame.newSessionButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.newSessionButton:SetScript("OnClick", function(self) addonTbl.NewSession() end);
 			-- Reload Last Session Button
-		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["RELOAD_LAST_SESSION_BUTTON"], nil) end);
+		frame.reloadLastSessionButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["RELOAD_LAST_SESSION"], nil) end);
 		frame.reloadLastSessionButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		frame.reloadLastSessionButton:SetScript("OnClick", function(self) addonTbl.LoadLastSession() end);
 			-- Active Recorder Reminder CheckButton
-		frame.activeRecorderReminderCheckButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["ACTIVE_RECORDER_REMINDER_CHECKBUTTON"], nil) end);
+		frame.activeRecorderReminderCheckButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["ACTIVE_RECORDER_REMINDER"], nil) end);
 		frame.activeRecorderReminderCheckButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 		if MidasSettings["activeRecorderReminder"] then
 			frame.activeRecorderReminderCheckButton:SetChecked(true);
@@ -147,8 +146,7 @@ end
 ]]
 
 addonTbl.CreateFrame = function(name, height, width)
-	-- If the frame is already created, then call the Show function instead.
-	if not frame then
+	if not frame then -- A frame needs to be created.
 		frame = CreateFrame("Frame", name, UIParent, "BasicFrameTemplateWithInset");
 		frame:SetSize(height, width);
 		Show(frame);

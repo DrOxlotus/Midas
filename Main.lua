@@ -75,13 +75,13 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 									SendMailMoney.gold:SetText(string.sub(money, 0, moneyLength-4));
 								end
 							else
-								print(L["ADDON_NAME"] .. L["ERR_MSG_NO_MONEY_TO_SEND"]);
+								print(L["ADDON_NAME"] .. L["NO_MONEY_TO_SEND"]);
 							end
 						else
-							print(L["ADDON_NAME"] .. L["ERR_MSG_MAIL_CHARACTER_NOT_SET"]);
+							print(L["ADDON_NAME"] .. L["MAIL_CHARACTER_NOT_SET"]);
 						end
 					end);
-					MailFrameTab2.sendMailButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["SEND_MAIL_BUTTON"], nil) end);
+					MailFrameTab2.sendMailButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["SEND_MAIL"], nil) end);
 					MailFrameTab2.sendMailButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
 				else
 					MailFrameTab2.sendMailButton:Show();
@@ -101,7 +101,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	end
 	
 	if event == "PLAYER_LOGIN" then
-		print(L["ADDON_NAME"] .. L["INFO_MSG_ADDON_LOAD_SUCCESSFUL"]);
+		print(L["ADDON_NAME"] .. L["ADDON_LOAD_SUCCESSFUL"]);
 		
 		-- The player's realm name is apparently nil at login. So ask again.
 		_, addonTbl.realmName = UnitFullName(L["PLAYER"]);

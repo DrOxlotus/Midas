@@ -19,7 +19,7 @@ end
 addonTbl.StartAndPause = function()
 	if MidasCharacterHistory.moneyObtainedLastSession ~= 0 and MidasCharacterHistory.moneyObtainedLastSession ~= nil then -- A previous session was detected
 		StaticPopupDialogs["Midas_Previous_Session_Detected"] = {
-			text = L["INFO_MSG_PREVIOUS_SESSION_DETECTED"],
+			text = L["PREVIOUS_SESSION_DETECTED"],
 			button1 = L["YES"],
 			button2 = L["NO"],
 			OnAccept = function()
@@ -49,8 +49,8 @@ addonTbl.StartAndPause = function()
 end
 
 addonTbl.NewSession = function()
-	StaticPopupDialogs["Midas_NewSession"] = {
-		text = L["INFO_MSG_NEW_SESSION"],
+	StaticPopupDialogs["Midas_NewSessionConfirm"] = {
+		text = L["NEW_SESSION_CONFIRM"],
 		button1 = L["YES"],
 		button2 = L["NO"],
 		OnAccept = function()
@@ -64,12 +64,12 @@ addonTbl.NewSession = function()
 		preferredIndex = 3,
 	};
 	
-	StaticPopup_Show("Midas_NewSession");
+	StaticPopup_Show("Midas_NewSessionConfirm");
 end
 
 addonTbl.LoadLastSession = function()
 	if MidasCharacterHistory.moneyObtainedLastSession == 0 or MidasCharacterHistory.moneyObtainedLastSession == nil then
-		print(L["ADDON_NAME"] .. L["ERR_MSG_NO_LAST_SESSION"]);
+		print(L["ADDON_NAME"] .. L["NO_LAST_SESSION"]);
 		return;
 	end
 	addonTbl.recorderState = 1;
@@ -86,7 +86,7 @@ addonTbl.SetMailCharacter = function(mailCharacter, editBox)
 	if mailCharacter == "!" then
 		addonTbl[addonTbl.realmName].mailCharacter = nil;
 		MidasRealms[addonTbl.realmName].mailCharacter = nil;
-		print(L["ADDON_NAME"] .. L["INFO_MSG_MAIL_CHARACTER_RESET"]);
+		print(L["ADDON_NAME"] .. L["MAIL_CHARACTER_RESET"]);
 		editBox:SetText("");
 		return;
 	end
@@ -96,5 +96,5 @@ addonTbl.SetMailCharacter = function(mailCharacter, editBox)
 	
 	editBox:SetText("");
 	
-	print(string.format(L["ADDON_NAME"] .. L["INFO_MSG_MAIL_CHARACTER_SET"], mailCharacter));
+	print(L["ADDON_NAME"] .. L["MAIL_CHARACTER_SET"] .. mailCharacter .. "!");
 end

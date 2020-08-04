@@ -20,7 +20,7 @@ addonTbl.GetCurrentMap = function()
 			if addonTbl.isRecorderActiveStateOK ~= true then
 				if addonTbl.activeRecorderReminder and addonTbl.recorderState == 1 then
 					StaticPopupDialogs["Midas_ActiveRecorderReminder"] = {
-						text = L["INFO_MSG_ACTIVE_RECORDER"],
+						text = L["ACTIVE_RECORDER"],
 						button1 = L["YES"],
 						button2 = L["NO"],
 						OnAccept = function()
@@ -40,7 +40,7 @@ addonTbl.GetCurrentMap = function()
 			end
 			if not addonTbl.maps[addonTbl.uiMapID] and not addonTbl.ignoredMaps[addonTbl.uiMapID] then -- The map isn't in either maps table
 				addonTbl.maps[uiMapID] = uiMap.name;
-				print(L["ADDON_NAME"] .. L["ERR_MSG_MAP_NOT_SUPPORTED"] .. addonTbl.uiMapID .. " (" .. uiMap.name .. ", " .. UnitClass("player") .. ", " .. UnitLevel("player") .. ") - Please report in the Midas section here: https://discord.gg/pJAJxs");
+				print(L["ADDON_NAME"] .. L["MAP_NOT_SUPPORTED"] .. addonTbl.uiMapID .. " (" .. uiMap.name .. ", " .. UnitClass("player") .. ", " .. UnitLevel("player") .. ") - Please report in the Midas section here: https://discord.gg/7Ve8JQv");
 			end
 		else
 			addonTbl.isRecorderActiveStateOK = false;

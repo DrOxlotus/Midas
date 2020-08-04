@@ -16,6 +16,10 @@ addonTbl.isInInstance 										= isInInstance;
 addonTbl.isMidasLoaded 										= isMidasLoaded;
 addonTbl.recorderState										= recorderState;
 
+-- CONSTANTS
+local numTabs												= 2;
+addonTbl.numTabs											= numTabs;
+
 -- INTEGERS
 local currentMoney											= 0;
 local moneyObtainedThisSession								= 0;
