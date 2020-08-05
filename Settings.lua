@@ -25,8 +25,6 @@ end
 tbl.LoadSettings = function(doNotOpen)
 	if doNotOpen then
 		MidasSettings = {activeRecorderReminder = GetOptions("activeRecorderReminder"), locale = GetOptions("locale")};
-	else
-		--tbl.CreateFrame("MidasMainFrame", 275, 100);
 	end
 end
 --[[

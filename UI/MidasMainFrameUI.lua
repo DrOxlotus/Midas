@@ -62,21 +62,43 @@ tbl.HideTooltip = function(self)
 end
 
 tbl.MidasMainFrameUI_OnLoad = function(self)
-	--[[for i = 1, tbl.numTabs do
-		local tab = CreateFrame("Button", self:GetName()..tbl.frameTabs[i]["tab"], self, "CharacterFrameTabButtonTemplate");
+	
+	local contents = {};
+	
+	for i = 1, tbl.numTabs do
+		local tab = CreateFrame("Button", self:GetName().."Tab"..i, self, "CharacterFrameTabButtonTemplate");
 		tab:SetID(i);
 		tab:SetText(tbl.frameTabs[i]["text"]);
-		tab:SetScript("OnClick", MidasMainFrame_UpdateTabs);
-	end]]
+		tab:SetScript("OnClick", MidasMainFrameUITab_OnClick);
+		
+		tab.content = CreateFrame("Frame", nil, self);
+		tab.content:Hide();
+		
+		table.insert(contents, tab.content);
+		
+		if (i == 1) then
+			tab:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 5, 1);
+		else
+			tab:SetPoint("TOPLEFT", _G[self:GetName().."Tab"..(i - 1)], "TOPRIGHT", -14, 0);
+		end
+		
+		_G[self:GetName().."Tab"..i]:SetWidth(0);
+		PanelTemplates_TabResize(_G[self:GetName().."Tab"..i], 0, nil, 36, 88);
+	end
+	
+	MidasMainFrameUITab_OnClick(_G[self:GetName().."Tab"..1]); -- This is the default tab selected on open.
+	--return unpack(contents);
 	
 	if not self["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
-		tbl.CreateWidget("FontString", "title", GlobalStrings["RELEASE"] .. GlobalStrings["ADDON_NAME_SETTINGS"], self, "CENTER", self.TitleBg, "CENTER", 5, 0, nil, nil);
 		tbl.CreateWidget("Button", "stopAndStartButton", "Interface\\Icons\\inv_misc_pocketwatch_02", self, "CENTER", self, "CENTER", -110, 5, 30, 30);
 		tbl.CreateWidget("Button", "newSessionButton", "Interface\\Icons\\spell_chargepositive", self, "CENTER", self, "CENTER", -70, 5, 30, 30);
 		tbl.CreateWidget("Button", "reloadLastSessionButton", "Interface\\Icons\\inv_letter_18", self, "CENTER", self, "CENTER", -30, 5, 30, 30);
 		tbl.CreateWidget("CheckButton", "activeRecorderReminderCheckButton", "", self, "CENTER", self, "CENTER", -110, -30, nil, nil);
 		tbl.CreateWidget("EditBox", "mailCharacterEditBox", "", self, "CENTER", self, "CENTER", 75, 5, 120, 30);
+		tbl.CreateWidget("FontString", "title", GlobalStrings["RELEASE"] .. GlobalStrings["ADDON_NAME_SETTINGS"], self, "CENTER", self.TitleBg, "CENTER", 5, 0, nil, nil);
 		tbl.CreateWidget("FontString", "money", GetCoinTextureString(GetMoney()), self, "CENTER", self, "CENTER", 60, -30, nil, nil);
+		--tbl.CreateWidget("Tab", "MidasMainFrame_Tab1", tbl.frameTabs[1]["text"], self, tbl.frameTabs[1]["point"], self, tbl.frameTabs[1]["relativeTo"], tbl.frameTabs[1]["x"], tbl.frameTabs[1]["y"], tbl.frameTabs[1]["height"], tbl.frameTabs[1]["width"]);
+		--tbl.CreateWidget("Tab", "MidasMainFrame_Tab2", tbl.frameTabs[2]["text"], self, tbl.frameTabs[2]["point"], self, tbl.frameTabs[2]["relativeTo"], tbl.frameTabs[2]["x"], tbl.frameTabs[2]["y"], tbl.frameTabs[2]["height"], tbl.frameTabs[2]["width"]);
 	end
 			
 	if self then

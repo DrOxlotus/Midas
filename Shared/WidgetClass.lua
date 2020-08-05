@@ -28,6 +28,10 @@ tbl.CreateWidget = function(type, name, text, frameName, point, parent, relative
 		frameName[name]:SetFontObject("GameFontHighlight");
 		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
 		frameName[name]:SetText(text);
+	elseif type == "Tab" then
+		frameName[name] = CreateFrame("Button", name, parent, "CharacterFrameTabButtonTemplate");
+		frameName[name]:SetPoint(point, parent, relativePos, xOffset, yOffset);
+		frameName[name]:SetSize(length, width);
 	end
 end
 -- Synopsis: Creates a widget.
