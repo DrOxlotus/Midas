@@ -1,10 +1,10 @@
 -- Namespace Variables
-local addon, addonTbl = ...;
+local addon, tbl = ...;
 
 -- Module-Local Variables
-local L = addonTbl.L;
+local GlobalStrings = tbl.GlobalStrings;
 
-addonTbl.CreateWidget = function(type, name, text, frameName, point, parent, relativePos, xOffset, yOffset, length, width)
+tbl.CreateWidget = function(type, name, text, frameName, point, parent, relativePos, xOffset, yOffset, length, width)
 	if type == "Button" then
 		frameName[name] = CreateFrame("Button", name, parent, "SecureHandlerClickTemplate");
 		frameName[name]:RegisterForClicks("AnyUp");
@@ -51,7 +51,7 @@ end
 	- FontString
 ]]
 
-addonTbl.UpdateWidget = function(name, frameName, text)
+tbl.UpdateWidget = function(name, frameName, text)
 	frameName[name]:SetText(text);
 end
 -- Synopsis: Updates a widget's text.

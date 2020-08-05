@@ -4,21 +4,21 @@
 ]]
 
 -- Namespace Variables
-local addon, addonTbl = ...;
+local addon, tbl = ...;
 
 -- Module-Local Variables
 local eventFrame = CreateFrame("Frame");
 local isPlayerInCombat;
-local L = addonTbl.L;
+local GlobalStrings = tbl.GlobalStrings;
 
-for _, event in ipairs(addonTbl.events) do
+for _, event in ipairs(tbl.events) do
 	eventFrame:RegisterEvent(event);
 end
 -- Synopsis: Registers all events that the addon cares about using the events table in the corresponding table file.
 
 local function IsPlayerInCombat()
 	-- Maps can't be updated while the player is in combat.
-	if UnitAffectingCombat(L["PLAYER"]) then
+	if UnitAffectingCombat(GlobalStrings["PLAYER"]) then
 		isPlayerInCombat = true;
 	else
 		isPlayerInCombat = false;
@@ -38,7 +38,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 			end
 		end
 		
-		C_Timer.After(0, function() C_Timer.After(3, function() addonTbl.GetCurrentMap() end); end); -- Wait 3 seconds before asking the game for the new map.
+		C_Timer.After(0, function() C_Timer.After(3, function() tbl.GetCurrentMap() end); end); -- Wait 3 seconds before asking the game for the new map.
 	end
 	-- Synopsis: Get the player's map when they change zones or enter instances.
 	
@@ -59,14 +59,14 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 			MailFrameTab2:SetScript("OnClick", function(self)
 				MailFrameTab_OnClick(self, 2);
 				if not MailFrameTab2.sendMailButton then -- Don't want the button to be created over and over
-					addonTbl.CreateWidget("Button", "sendMailButton", "Interface\\Minimap\\Tracking\\mailbox", MailFrameTab2, "CENTER", MailFrameTab2, "RIGHT", 40, 400, 30, 30);
+					tbl.CreateWidget("Button", "sendMailButton", "Interface\\Minimap\\Tracking\\mailbox", MailFrameTab2, "CENTER", MailFrameTab2, "RIGHT", 40, 400, 30, 30);
 					MailFrameTab2.sendMailButton:SetScript("OnClick", function(self)
-						if addonTbl[addonTbl.realmName].mailCharacter ~= nil then
-							local money = addonTbl.moneyObtainedThisSession;
+						if tbl[tbl.realmName].mailCharacter ~= nil then
+							local money = tbl.moneyObtainedThisSession;
 							local moneyLength = string.len(money);
 							if money ~= 0 then
-								SendMailNameEditBox:SetText(addonTbl[addonTbl.realmName].mailCharacter);
-								SendMailSubjectEditBox:SetText(addon); addonTbl.mailSubject = addon;
+								SendMailNameEditBox:SetText(tbl[tbl.realmName].mailCharacter);
+								SendMailSubjectEditBox:SetText(addon); tbl.mailSubject = addon;
 								SendMailMoney.copper:SetText(string.sub(money, moneyLength-1, moneyLength-0));
 								if money >= 100 then
 									SendMailMoney.silver:SetText(string.sub(money, moneyLength-3, moneyLength-2));
@@ -75,14 +75,14 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 									SendMailMoney.gold:SetText(string.sub(money, 0, moneyLength-4));
 								end
 							else
-								print(L["ADDON_NAME"] .. L["NO_MONEY_TO_SEND"]);
+								print(GlobalStrings["ADDON_NAME"] .. GlobalStrings["NO_MONEY_TO_SEND"]);
 							end
 						else
-							print(L["ADDON_NAME"] .. L["MAIL_CHARACTER_NOT_SET"]);
+							print(GlobalStrings["ADDON_NAME"] .. GlobalStrings["MAIL_CHARACTER_NOT_SET"]);
 						end
 					end);
-					MailFrameTab2.sendMailButton:SetScript("OnEnter", function(self) addonTbl.ShowTooltip(self, L["SEND_MAIL"], nil) end);
-					MailFrameTab2.sendMailButton:SetScript("OnLeave", function(self) addonTbl.HideTooltip(self) end);
+					MailFrameTab2.sendMailButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["SEND_MAIL"], nil) end);
+					MailFrameTab2.sendMailButton:SetScript("OnLeave", function(self) tbl.HideTooltip(self) end);
 				else
 					MailFrameTab2.sendMailButton:Show();
 				end
@@ -91,47 +91,50 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	end
 	
 	if event == "MAIL_SEND_SUCCESS" then
-		if addonTbl.mailSubject == addon then
-			addonTbl.currentMoney = GetMoney() - (addonTbl.moneyObtainedThisSession + 30); -- The 30 is the cost for sending the mail
-			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.currentMoney));
-			addonTbl.moneyObtainedThisSession = 0;
-			addonTbl.recorderState = 0;
+		if tbl.mailSubject == addon then
+			tbl.currentMoney = GetMoney() - (tbl.moneyObtainedThisSession + 30); -- The 30 is the cost for sending the mail
+			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.currentMoney));
+			tbl.moneyObtainedThisSession = 0;
+			tbl.recorderState = 0;
 		end
-		addonTbl.mailSubject = ""; 
+		tbl.mailSubject = ""; 
 	end
 	
 	if event == "PLAYER_LOGIN" then
-		print(L["ADDON_NAME"] .. L["ADDON_LOAD_SUCCESSFUL"]);
+		print(GlobalStrings["ADDON_NAME"] .. GlobalStrings["ADDON_LOAD_SUCCESSFUL"]);
+		
+		-- Create the main frame
+		tbl.CreateFrame("MidasMainFrameUI", 275, 100);
 		
 		-- The player's realm name is apparently nil at login. So ask again.
-		_, addonTbl.realmName = UnitFullName(L["PLAYER"]);
-		addonTbl.InitializeSavedVars(); -- Initialize the tables if they're nil. This is usually only for players that first install the addon.
-		addonTbl.LoadSettings(true);
-		addonTbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = addonTbl["locale"];
-		addonTbl.GetCurrentMap();
-		addonTbl.currentMoney = GetMoney();
+		_, tbl.realmName = UnitFullName(GlobalStrings["PLAYER"]);
+		tbl.InitializeSavedVars(); -- Initialize the tables if they're nil. This is usually only for players that first install the addon.
+		tbl.LoadSettings(true);
+		tbl.SetLocale(MidasSettings["locale"]); MidasSettings["locale"] = tbl["locale"];
+		tbl.GetCurrentMap();
+		tbl.currentMoney = GetMoney();
 		
-		addonTbl[addonTbl.realmName] = MidasRealms[addonTbl.realmName];
+		tbl[tbl.realmName] = MidasRealms[tbl.realmName];
 	end
 	-- Synopsis: Loads data in after the player logs in or reloads.
 	
 	if event == "PLAYER_LOGOUT" then
-		if addonTbl.moneyObtainedThisSession > 0 then MidasCharacterHistory.moneyObtainedLastSession = addonTbl.moneyObtainedThisSession end;
-		MidasCharacterHistory.playerMoneyLastSession = addonTbl.currentMoney;
+		if tbl.moneyObtainedThisSession > 0 then MidasCharacterHistory.moneyObtainedLastSession = tbl.moneyObtainedThisSession end;
+		MidasCharacterHistory.playerMoneyLastSession = tbl.currentMoney;
 	end
 	-- Synopsis: Writes data to the cache.
 	
 	if event == "PLAYER_MONEY" then
-		if addonTbl.currentMoney > GetMoney() then return end; -- The event fired because the player lost money.
-		if addonTbl.recorderState and addonTbl.recorderState ~= 0 then
-			local rawMoneyObtained = GetMoney() - addonTbl.currentMoney;
-			addonTbl.moneyObtainedThisSession = addonTbl.moneyObtainedThisSession + rawMoneyObtained;
-			addonTbl.UpdateWidget("money", addonTbl.frame, GetCoinTextureString(addonTbl.moneyObtainedThisSession));
-			addonTbl.currentMoney = GetMoney();
+		if tbl.currentMoney > GetMoney() then return end; -- The event fired because the player lost money.
+		if tbl.recorderState and tbl.recorderState ~= 0 then
+			local rawMoneyObtained = GetMoney() - tbl.currentMoney;
+			tbl.moneyObtainedThisSession = tbl.moneyObtainedThisSession + rawMoneyObtained;
+			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.moneyObtainedThisSession));
+			tbl.currentMoney = GetMoney();
 			
-			if addonTbl.isInInstance then
-				if not MidasCharacterHistory["Instances"][addonTbl.currentMap] then MidasCharacterHistory["Instances"][addonTbl.currentMap] = 0 end; -- To prevent arithmetic nil errors on the next step.
-				MidasCharacterHistory["Instances"][addonTbl.currentMap] = MidasCharacterHistory["Instances"][addonTbl.currentMap] + rawMoneyObtained;
+			if tbl.isInInstance then
+				if not MidasCharacterHistory["Instances"][tbl.currentMap] then MidasCharacterHistory["Instances"][tbl.currentMap] = 0 end; -- To prevent arithmetic nil errors on the next step.
+				MidasCharacterHistory["Instances"][tbl.currentMap] = MidasCharacterHistory["Instances"][tbl.currentMap] + rawMoneyObtained;
 			end
 		end
 	end

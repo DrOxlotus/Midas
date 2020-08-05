@@ -1,8 +1,8 @@
 -- Namespace Variables
-local addon, addonTbl = ...;
+local addon, tbl = ...;
 
 -- Module-Local Variables
-local L = addonTbl.L;
+local GlobalStrings = tbl.GlobalStrings;
 
 local ignoredMaps = {
 	[671]	= "The Cove of Nashal",		-- Stormheim Intro (Alliance)
@@ -22,4 +22,4 @@ local ignoredMaps = {
 	[1604]	= "Chamber of Heart",		-- Horrific Visions
 };
 
-addonTbl.ignoredMaps = ignoredMaps;
+tbl.ignoredMaps = ignoredMaps;

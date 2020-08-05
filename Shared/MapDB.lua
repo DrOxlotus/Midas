@@ -1,8 +1,8 @@
 -- Namespace Variables
-local addon, addonTbl = ...;
+local addon, tbl = ...;
 
 -- Module-Local Variables
-local L = addonTbl.L;
+local GlobalStrings = tbl.GlobalStrings;
 
 local maps = {
 	[67]	= "Maraudon",
@@ -458,4 +458,4 @@ local maps = {
 	[1597]  = "Ny'alotha, the Waking City",
 };
 
-addonTbl.maps = maps;
+tbl.maps = maps;

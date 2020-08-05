@@ -1,8 +1,8 @@
 -- Namespace Variables
-local addon, addonTbl = ...;
+local addon, tbl = ...;
 
 -- Module-Local Variables
-local L = addonTbl.L;
+local GlobalStrings = tbl.GlobalStrings;
 
 local events = {
 	"INSTANCE_GROUP_SIZE_CHANGED",
@@ -19,4 +19,4 @@ local events = {
 };
 -- Synopsis: These are events that must occur before the addon will take action. Each event is documented in main.lua.
 
-addonTbl.events = events;
+tbl.events = events;

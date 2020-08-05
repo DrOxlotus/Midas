@@ -1,18 +1,16 @@
 -- Namespace Variables
-local addon, addonTbl = ...;
+local addon, tbl = ...;
 
 -- Module-Local Variables
-local L = addonTbl.L;
+local GlobalStrings = tbl.GlobalStrings;
 
-SLASH_Midas1 = L["SLASH_COMMAND_MIDAS1"];
+SLASH_Midas1 = GlobalStrings["SLASH_COMMAND_MIDAS1"];
 SlashCmdList["Midas"] = function(cmd, editbox)
 	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)");
 
 	if not cmd or cmd == "" then
-		addonTbl.LoadSettings(false);
-	elseif cmd == L["COMMAND_DISCORD"] then
-		print(L["ADDON_NAME"] .. "https://discord.gg/7Ve8JQv");
-	elseif cmd == L["COMMAND_HISTORY"] then
-		addonTbl.CreateFrame("MidasHistoryFrame", 300, 600);
+		tbl.LoadSettings(false);
+	elseif cmd == GlobalStrings["COMMAND_DISCORD"] then
+		print(GlobalStrings["ADDON_NAME"] .. "https://discord.gg/7Ve8JQv");
 	end
 end

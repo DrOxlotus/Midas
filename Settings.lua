@@ -1,32 +1,32 @@
 -- Namespace Variables
-local addon, addonTbl = ...;
+local addon, tbl = ...;
 
 -- Module-Local Variables
-local L = addonTbl.L;
+local GlobalStrings = tbl.GlobalStrings;
 
 local function GetOptions(arg)
 	if MidasSettings[arg] ~= nil then
-		addonTbl[arg] = MidasSettings[arg];
-		return addonTbl[arg];
+		tbl[arg] = MidasSettings[arg];
+		return tbl[arg];
 	else
 		if arg == "activeRecorderReminder" then
-			MidasSettings[arg] = false; addonTbl[arg] = MidasSettings[arg];
-			return addonTbl[arg];
+			MidasSettings[arg] = false; tbl[arg] = MidasSettings[arg];
+			return tbl[arg];
 		end
 		if arg == "locale" then
-			MidasSettings[arg] = "enUS"; addonTbl[arg] = MidasSettings[arg];
-			return addonTbl[arg];
+			MidasSettings[arg] = "enUS"; tbl[arg] = MidasSettings[arg];
+			return tbl[arg];
 		end
 	end
 end
 -- Synopsis: When the addon is loaded into memory after login, the addon will ask the cache for the last known
 -- value of the mode, rarity, and lootFast variables.
 
-addonTbl.LoadSettings = function(doNotOpen)
+tbl.LoadSettings = function(doNotOpen)
 	if doNotOpen then
 		MidasSettings = {activeRecorderReminder = GetOptions("activeRecorderReminder"), locale = GetOptions("locale")};
 	else
-		addonTbl.CreateFrame("MidasMainFrame", 275, 100);
+		--tbl.CreateFrame("MidasMainFrame", 275, 100);
 	end
 end
 --[[
