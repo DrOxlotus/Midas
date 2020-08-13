@@ -13,7 +13,6 @@ Shared\EventDB.lua
 Shared\VariableDB.lua
 Shared\IgnoredMapDB.lua
 Shared\MapDB.lua
-Shared\FrameDB.lua
 UI\MidasMainFrameUI.lua
 Commands.lua
 Settings.lua

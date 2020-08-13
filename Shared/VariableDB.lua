@@ -16,10 +16,6 @@ tbl.isInInstance 											= isInInstance;
 tbl.isMidasLoaded 											= isMidasLoaded;
 tbl.recorderState											= recorderState;
 
--- CONSTANTS
-local numTabs												= 2;
-tbl.numTabs													= numTabs;
-
 -- INTEGERS
 local currentMoney											= 0;
 local moneyObtainedThisSession								= 0;
