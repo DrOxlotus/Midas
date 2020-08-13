@@ -3,6 +3,7 @@ local addon, tbl = ...;
 
 -- Module-Local Variables
 local GlobalStrings = tbl.GlobalStrings;
+local shouldAskAboutLastSession = true;
 
 tbl.InitializeSavedVars = function()
 	-- SavedVars
@@ -17,7 +18,7 @@ tbl.InitializeSavedVars = function()
 end
 
 tbl.StartAndPause = function()
-	if MidasCharacterHistory.moneyObtainedLastSession ~= 0 and MidasCharacterHistory.moneyObtainedLastSession ~= nil then -- A previous session was detected
+	if MidasCharacterHistory.moneyObtainedLastSession ~= 0 and MidasCharacterHistory.moneyObtainedLastSession ~= nil and shouldAskAboutLastSession == true then -- A previous session was detected
 		StaticPopupDialogs["Midas_Previous_Session_Detected"] = {
 			text = GlobalStrings["PREVIOUS_SESSION_DETECTED"],
 			button1 = GlobalStrings["YES"],
@@ -26,8 +27,10 @@ tbl.StartAndPause = function()
 				tbl.LoadLastSession();
 			end,
 			OnCancel = function()
+				shouldAskAboutLastSession = false;
 				tbl.recorderState = 1;
-				tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(0));
+				tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(0), "update-text");
+				tbl.UpdateWidget("stopAndStartButton", tbl.frame, "Interface\\Icons\\inv_misc_pocketwatch_01", "update-icon");
 			end,
 			timeout = 0,
 			whileDead = true,
@@ -39,11 +42,13 @@ tbl.StartAndPause = function()
 	else
 		if tbl.recorderState == 1 then -- Recorder is active so pause it.
 			tbl.recorderState = 0;
-			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(GetMoney()));
+			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(GetMoney()), "update-text");
+			tbl.UpdateWidget("stopAndStartButton", tbl.frame, "Interface\\Icons\\inv_misc_pocketwatch_02", "update-icon");
 		else -- Recorder is paused so start it.
 			tbl.recorderState = 1;
 			tbl.currentMoney = GetMoney(); -- This value needs to be updated to only account for the money obtained while the recorder is active.
-			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.moneyObtainedThisSession));
+			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.moneyObtainedThisSession), "update-text");
+			tbl.UpdateWidget("stopAndStartButton", tbl.frame, "Interface\\Icons\\inv_misc_pocketwatch_01", "update-icon");
 		end
 	end
 end
@@ -56,7 +61,7 @@ tbl.NewSession = function()
 		OnAccept = function()
 			MidasCharacterHistory.moneyObtainedLastSession = 0; tbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
 			tbl.recorderState = 0;
-			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(GetMoney()));
+			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(GetMoney()), "update-text");
 		end,
 		timeout = 0,
 		whileDead = true,
@@ -74,7 +79,8 @@ tbl.LoadLastSession = function()
 	end
 	tbl.recorderState = 1;
 	tbl.moneyObtainedThisSession = MidasCharacterHistory.moneyObtainedLastSession;
-	tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession));
+	tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(MidasCharacterHistory.moneyObtainedLastSession), "update-text");
+	tbl.UpdateWidget("stopAndStartButton", tbl.frame, "Interface\\Icons\\inv_misc_pocketwatch_01", "update-icon");
 end
 
 --[[tbl.LoadSetting = function(setting)

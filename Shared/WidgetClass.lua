@@ -51,8 +51,12 @@ end
 	- FontString
 ]]
 
-tbl.UpdateWidget = function(name, frameName, text)
-	frameName[name]:SetText(text);
+tbl.UpdateWidget = function(name, frameName, text, action)
+	if action == "update-text" then
+		frameName[name]:SetText(text);
+	elseif action == "update-icon" then
+		frameName[name]:SetNormalTexture(text);
+	end
 end
 -- Synopsis: Updates a widget's text.
 --[[

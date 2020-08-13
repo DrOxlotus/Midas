@@ -93,7 +93,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 	if event == "MAIL_SEND_SUCCESS" then
 		if tbl.mailSubject == addon then
 			tbl.currentMoney = GetMoney() - (tbl.moneyObtainedThisSession + 30); -- The 30 is the cost for sending the mail
-			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.currentMoney));
+			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.currentMoney), "update-text");
 			tbl.moneyObtainedThisSession = 0;
 			tbl.recorderState = 0;
 		end
@@ -129,7 +129,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 		if tbl.recorderState and tbl.recorderState ~= 0 then
 			local rawMoneyObtained = GetMoney() - tbl.currentMoney;
 			tbl.moneyObtainedThisSession = tbl.moneyObtainedThisSession + rawMoneyObtained;
-			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.moneyObtainedThisSession));
+			tbl.UpdateWidget("money", tbl.frame, GetCoinTextureString(tbl.moneyObtainedThisSession), "update-text");
 			tbl.currentMoney = GetMoney();
 			
 			if tbl.isInInstance then
