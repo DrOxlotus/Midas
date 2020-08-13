@@ -18,17 +18,10 @@ local function MidasMainFrameUI_OnMouseUp(self)
     end
 end
 
-tbl.ShowTooltip = function(self, text, state)
+tbl.ShowTooltip = function(self, text)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	
-	-- Recorder button
-	if state == 1 then
-		GameTooltip:SetText(text .. "\n" .. GlobalStrings["ENABLED"]);
-	elseif state == 0 then
-		GameTooltip:SetText(text .. "\n" .. GlobalStrings["DISABLED"]);
-	else
-		GameTooltip:SetText(text);
-	end
+	GameTooltip:SetText(text);
 	
 	-- Mail Character EditBox
 	if tbl[tbl.realmName].mailCharacter ~= nil and (self:GetName() == "mailCharacterEditBox") then
@@ -84,12 +77,12 @@ tbl.MidasMainFrameUI_OnLoad = function(self)
 	self.reloadLastSessionButton:SetScript("OnClick", function(self) tbl.LoadLastSession() end);
 	self.stopAndStartButton:SetScript("OnClick", function(self) tbl.StartAndPause() end);
 	
-	self.activeRecorderReminderCheckButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["ACTIVE_RECORDER_REMINDER"], nil) end);
-	self.mailCharacterEditBox:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["MAIL_CHARACTER_EDITBOX"], nil) end);
+	self.activeRecorderReminderCheckButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["ACTIVE_RECORDER_REMINDER"]) end);
+	self.mailCharacterEditBox:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["MAIL_CHARACTER_EDITBOX"]) end);
 	self.mailCharacterEditBox:SetScript("OnEnterPressed", function(self) tbl.SetMailCharacter(self.mailCharacterEditBox:GetText(), self.mailCharacterEditBox) end);
-	self.newSessionButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["NEW_SESSION"], nil) end);
-	self.reloadLastSessionButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["RELOAD_LAST_SESSION"], nil) end);
-	self.stopAndStartButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["STOP_AND_START"], tbl.recorderState) end);
+	self.newSessionButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["NEW_SESSION"]) end);
+	self.reloadLastSessionButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["RELOAD_LAST_SESSION"]) end);
+	self.stopAndStartButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["STOP_AND_START"]) end);
 	
 	self.activeRecorderReminderCheckButton:SetScript("OnLeave", function(self) tbl.HideTooltip(self) end);
 	self.mailCharacterEditBox:SetScript("OnLeave", function(self) tbl.HideTooltip(self) end);

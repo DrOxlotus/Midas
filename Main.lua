@@ -81,7 +81,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 							print(GlobalStrings["ADDON_NAME"] .. GlobalStrings["MAIL_CHARACTER_NOT_SET"]);
 						end
 					end);
-					MailFrameTab2.sendMailButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["SEND_MAIL"], nil) end);
+					MailFrameTab2.sendMailButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["SEND_MAIL"]) end);
 					MailFrameTab2.sendMailButton:SetScript("OnLeave", function(self) tbl.HideTooltip(self) end);
 				else
 					MailFrameTab2.sendMailButton:Show();
