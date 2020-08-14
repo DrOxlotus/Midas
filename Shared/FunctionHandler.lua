@@ -105,7 +105,7 @@ tbl.Search = function(instance)
 	if MidasCharacterHistory["Instances"] == {} or MidasCharacterHistory["Instances"] == nil then return end;
 	for k, v in pairs(MidasCharacterHistory["Instances"]) do
 		if string.find(string.lower(k), string.lower(instance)) then
-			print(GlobalStrings["ADDON_NAME"] .. GetCoinTextureString(v) .. " - " .. k);
+			print(GlobalStrings["ADDON_NAME"] .. k .. " - " .. GetCoinTextureString(v));
 		end
 	end
 end
