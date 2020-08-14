@@ -12,5 +12,7 @@ SlashCmdList["Midas"] = function(cmd, editbox)
 		tbl.LoadSettings(false);
 	elseif cmd == GlobalStrings["COMMAND_DISCORD"] then
 		print(GlobalStrings["ADDON_NAME"] .. "https://discord.gg/7Ve8JQv");
+	elseif (cmd == GlobalStrings["COMMAND_SEARCH"] or cmd == "s") and args ~= "" and tonumber(args) ~= true then
+		tbl.Search(args);
 	end
 end

@@ -83,10 +83,6 @@ tbl.LoadLastSession = function()
 	tbl.UpdateWidget("stopAndStartButton", tbl.frame, "Interface\\Icons\\inv_misc_pocketwatch_01", "update-icon");
 end
 
---[[tbl.LoadSetting = function(setting)
-	
-end]]
-
 tbl.SetMailCharacter = function(mailCharacter, editBox)
 	if mailCharacter == "" then return end; -- To prevent setting the character to blank.
 	if mailCharacter == "!" then
@@ -103,4 +99,13 @@ tbl.SetMailCharacter = function(mailCharacter, editBox)
 	editBox:SetText("");
 	
 	print(GlobalStrings["ADDON_NAME"] .. GlobalStrings["MAIL_CHARACTER_SET"] .. mailCharacter .. "!");
+end
+
+tbl.Search = function(instance)
+	if MidasCharacterHistory["Instances"] == {} or MidasCharacterHistory["Instances"] == nil then return end;
+	for k, v in pairs(MidasCharacterHistory["Instances"]) do
+		if string.find(string.lower(k), string.lower(instance)) then
+			print(GlobalStrings["ADDON_NAME"] .. GetCoinTextureString(v) .. " - " .. k);
+		end
+	end
 end
