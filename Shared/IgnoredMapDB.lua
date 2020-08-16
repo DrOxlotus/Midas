@@ -8,6 +8,7 @@ local ignoredMaps = {
 	[671]	= "The Cove of Nashal",		-- Stormheim Intro (Alliance)
 	[717]	= "Dreadscar Rift",			-- Warlock Class Hall
 	[718]	= "Dreadscar Rift",			-- Warlock Class Hall Unlock
+	[745]	= "Ulduar",					-- BM Hunter Artifact
 	[773]	= "Tol Barad",				-- Destruction Warlock Artifact
 	[774]	= "Baradin Hold",			-- Destruction Warlock Artifact
 	[1469]	= "Vision of Orgrimmar",	-- Horrific Visions
