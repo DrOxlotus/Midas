@@ -79,7 +79,7 @@ tbl.MidasMainFrameUI_OnLoad = function(self)
 	
 	self.activeRecorderReminderCheckButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["ACTIVE_RECORDER_REMINDER"]) end);
 	self.mailCharacterEditBox:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["MAIL_CHARACTER_EDITBOX"]) end);
-	self.mailCharacterEditBox:SetScript("OnEnterPressed", function(self) tbl.SetMailCharacter(self.mailCharacterEditBox:GetText(), self.mailCharacterEditBox) end);
+	self.mailCharacterEditBox:SetScript("OnEnterPressed", function(self) tbl.SetMailCharacter(self:GetText(), self) end);
 	self.newSessionButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["NEW_SESSION"]) end);
 	self.reloadLastSessionButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["RELOAD_LAST_SESSION"]) end);
 	self.stopAndStartButton:SetScript("OnEnter", function(self) tbl.ShowTooltip(self, GlobalStrings["STOP_AND_START"]) end);
