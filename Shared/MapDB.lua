@@ -456,6 +456,8 @@ local maps = {
 	[1595]  = "Ny'alotha, the Waking City",
 	[1596]  = "Ny'alotha, the Waking City",
 	[1597]  = "Ny'alotha, the Waking City",
+	[1609]	= "Darkmaul Citadel",
+	[1610]	= "Darkmaul Citadel",
 };
 
 tbl.maps = maps;

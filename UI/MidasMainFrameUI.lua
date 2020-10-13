@@ -45,7 +45,7 @@ tbl.HideTooltip = function(self)
 end
 
 tbl.MidasMainFrameUI_OnLoad = function(self)
-	
+	if MidasSettings == nil then MidasSettings = {} end;
 	if not self["title"] then -- If title doesn't exist, then it's likely that none of the other widgets exist.
 		tbl.CreateWidget("Button", "stopAndStartButton", "Interface\\Icons\\inv_misc_pocketwatch_02", self, "CENTER", self, "CENTER", -110, 5, 30, 30);
 		tbl.CreateWidget("Button", "newSessionButton", "Interface\\Icons\\spell_chargepositive", self, "CENTER", self, "CENTER", -70, 5, 30, 30);

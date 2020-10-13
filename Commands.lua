@@ -12,7 +12,7 @@ SlashCmdList["Midas"] = function(cmd, editbox)
 		tbl.MidasMainFrameUI_OnShow(tbl.frame);
 	elseif cmd == GlobalStrings["COMMAND_DISCORD"] then
 		print(GlobalStrings["ADDON_NAME"] .. "https://discord.gg/7Ve8JQv");
-	elseif (cmd == GlobalStrings["COMMAND_SEARCH"] or cmd == "s") and args ~= "" and tonumber(args) ~= true then
+	elseif cmd == GlobalStrings["COMMAND_SEARCH"] and args ~= "" and tonumber(args) ~= true then
 		tbl.Search(args);
 	end
 end

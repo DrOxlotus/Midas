@@ -5,6 +5,8 @@ local addon, tbl = ...;
 local GlobalStrings = tbl.GlobalStrings;
 
 tbl.GetCurrentMap = function()
+	if MidasMaps == nil then MidasMaps = {} end;
+	
 	local uiMapID = C_Map.GetBestMapForUnit("player");
 	tbl.isInInstance = IsInInstance();
 	

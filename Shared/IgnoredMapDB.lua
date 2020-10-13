@@ -5,6 +5,7 @@ local addon, tbl = ...;
 local GlobalStrings = tbl.GlobalStrings;
 
 local ignoredMaps = {
+	[118]	= "Icecrown",				-- Class Trials
 	[671]	= "The Cove of Nashal",		-- Stormheim Intro (Alliance)
 	[717]	= "Dreadscar Rift",			-- Warlock Class Hall
 	[718]	= "Dreadscar Rift",			-- Warlock Class Hall Unlock
